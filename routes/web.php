@@ -61,6 +61,7 @@ Route::group(array('prefix' => 'admin'), function()
     Route::get('/user-page', [App\Http\Controllers\Profile\UserController::class, 'userPage'])->name('profile_userPage');
     Route::post('/status-update', [App\Http\Controllers\Profile\UserController::class, 'statusTransactionUpdate'])->name('profile_statusUpdate');
     Route::resource('/users', App\Http\Controllers\Profile\ProfileController::class);
+    Route::post('/vivod/{conslusions_id}', [\App\Http\Controllers\AdminController::class, 'vivod'])->name('profile_vivod');
 
 
     Route::get('/news/{first}/{page}/{sort}/{param}', [App\Http\Controllers\Profile\NewsController::class, 'index'])->name('news.index');
