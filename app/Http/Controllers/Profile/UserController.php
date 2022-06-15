@@ -304,7 +304,7 @@ class UserController extends CabinetController
     public function conclusionsStore(Request $request)
     {
         Conclusions::create($request->all());
-        return back();
+        return back()->with('success', 'Заявка отправлена!');
     }
 
     public function conclusionsPays()
