@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Profile;
 
 use App\Http\Controllers\CabinetController;
 use App\Http\Requests\TransactionUrlRequest;
+use App\Models\Conclusions;
 use App\Models\PaymentForm;
 use App\Models\PaymentList;
 use App\Models\Transactions;
@@ -302,7 +303,7 @@ class UserController extends CabinetController
 
     public function conclusionsStore(Request $request)
     {
-        dd($request->all());
+        Conclusions::create($request->all());
     }
 
     public function conclusionsPays()
