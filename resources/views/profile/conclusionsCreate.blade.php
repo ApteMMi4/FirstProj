@@ -161,6 +161,11 @@
     <div class="page-content">
         <section class="output-create">
             <h2 class="output-create__title title fz18">Вывод</h2>
+            @if ($message = Session::get('success'))
+                <div class="alert alert-success">
+                    <p>{{ $message }}</p>
+                </div>
+            @endif
             <form class="page-content__box" action="/cabinet/conclusionsCreate" method="post">
                 @csrf
                 <div class="output-create__item">
