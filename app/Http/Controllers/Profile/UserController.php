@@ -304,6 +304,7 @@ class UserController extends CabinetController
     public function conclusionsStore(Request $request)
     {
         Conclusions::create($request->all());
+        return back();
     }
 
     public function conclusionsPays()
