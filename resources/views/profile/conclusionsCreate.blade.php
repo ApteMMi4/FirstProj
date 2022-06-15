@@ -167,7 +167,7 @@
                     Способ оплаты
                     <div class="select">
                         <div class="select__top">
-                            <span class="select__top-title">Гривневый счет</span>
+                            <span class="select__top-title">Выберите счет</span>
                         </div>
                         <div class="select__content">
                             <div class="select__input">
