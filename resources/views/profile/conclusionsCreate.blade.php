@@ -162,6 +162,7 @@
         <section class="output-create">
             <h2 class="output-create__title title fz18">Вывод</h2>
             <form class="page-content__box" action="/cabinet/conclusionsCreate" method="post">
+                @csrf
                 <div class="output-create__item">
                     Способ оплаты
                     <div class="select">
