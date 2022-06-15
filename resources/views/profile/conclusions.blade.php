@@ -166,68 +166,63 @@
                         <div class="list__item list__item3 list__title">
                             Реквизиты
                         </div>
-                        <div class="list__item list__item4 list__title">
-                            Отдаю
-                        </div>
-                        <div class="list__item list__item4 list__title">
-                            Получаю
-                        </div>
-                        <div class="list__item list__item4 list__title">
-                            Курс
-                        </div>
                         <div class="list__item list__item5 list__title">
                             Статус
                         </div>
                     </div>
+                    @foreach($conslusions as $item)
                     <div class="list">
                         <div class="list__item list__item1">
-                            <span>34</span>
+                            <span>{{$item->id}}</span>
                         </div>
                         <div class="list__item list__item2">
-                            <span>22.03.2022</span>
+                            <span>{{$item->created_at}}</span>
                         </div>
                         <div class="list__item list__item4">
-                            <span>apipay</span>
+                            <span>{{$item->user->name}}</span>
                         </div>
                         <div class="list__item list__item2">
-                            Global24
+                            <span>{{$item->valute}}</span>
                         </div>
                         <div class="list__item list__item3">
-                            <span>5375 4141 2876 6543 </span>
-                        </div>
-                        <div class="list__item list__item4">
-                            <span>186 грн</span>
-                        </div>
-                        <div class="list__item list__item4">
-                            <span>0,020</span>
-                        </div>
-                        <div class="list__item list__item4">
-                            <span>33.45</span>
+                            <span>{{$item->return}} </span>
                         </div>
                         <div class="list__item list__item5">
-                            Новый
-                            <button class="admin-table__nine-btn">
-                                <img class="gear-img1" src="img/gear.png" alt="">
-                                <img class="gear-img2" src="img/gear-color.png" alt="">
-                            </button>
-                            <div class="gear__content">
-                                <p>Завершен</p>
-                                <p>Отменен</p>
-                                <p>Приостановлен</p>
-                            </div>
-                        </div>
-                    </div>
+                           @if($item->status=='new')
+                                Новый
+                            @endif
+                               @if($item->status=='success')
+                                   Завершен
+                               @endif
+                               @if($item->status=='block')
+                                   Отменен
+                               @endif
+                               @if($item->status=='stop')
+                                   Приостановлен
+                               @endif
+                            {{-- <button class="admin-table__nine-btn">
+                                 <img class="gear-img1" src="img/gear.png" alt="">
+                                 <img class="gear-img2" src="img/gear-color.png" alt="">
+                             </button>
+                             <div class="gear__content">
+                                 <p>Завершен</p>
+                                 <p>Отменен</p>
+                                 <p>Приостановлен</p>
+                             </div>--}}
+                         </div>
+                     </div>
+                     @endforeach
 
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
 
-        <ul class="pagination">
-        </ul>
-    </div>
-{{--    @endif--}}
+                         </div>
+                     </div>
+                 </div>
+             </div>
+         </section>
+
+             <div class="pagination"> {{ $conslusions->links('vendor.pagination.custom') }}</div>
+     </div>
+ {{--    @endif--}}
 @endsection
 <nav class="nav">
     <ul class="nav__list">

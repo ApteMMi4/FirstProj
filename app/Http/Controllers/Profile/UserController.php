@@ -191,7 +191,9 @@ class UserController extends CabinetController
 
     public function conclusions()
     {
-        return view('profile.conclusions');
+        $conslusions = Conclusions::where('user_id',auth()->id())->paginate(15);
+
+        return view ('profile.conclusions',compact('conslusions'));
     }
 
     public function currencies()
