@@ -13,6 +13,7 @@ use Illuminate\Http\Request;
 use Auth;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
+use function React\Promise\all;
 
 class UserController extends CabinetController
 {
@@ -303,7 +304,9 @@ class UserController extends CabinetController
 
     public function conclusionsStore(Request $request)
     {
-        Conclusions::create($request->all());
+        $vivod = $request->all();
+        $vivod ['user_id']= auth()->id();
+        Conclusions::create($vivod);
         return back()->with('success', 'Заявка отправлена!');
     }
 

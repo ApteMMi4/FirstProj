@@ -12,6 +12,7 @@ class Conclusions extends Model
     protected $table = 'conclusions';
 
     protected $fillable = [
+        'user_id',
         'valute',
         'sum',
         'return_valute',
