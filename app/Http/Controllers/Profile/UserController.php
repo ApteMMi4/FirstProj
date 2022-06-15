@@ -191,7 +191,14 @@ class UserController extends CabinetController
 
     public function conclusions()
     {
-        $conslusions = Conclusions::where('user_id',auth()->id())->paginate(15);
+        if (auth()->user()->isUser())
+        {
+            $conslusions = Conclusions::where('user_id',auth()->id())->paginate(15);
+        }
+        else{
+            $conslusions = Conclusions::select('*')->paginate(15);
+        }
+
 
         return view ('profile.conclusions',compact('conslusions'));
     }
