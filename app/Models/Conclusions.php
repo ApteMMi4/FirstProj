@@ -13,6 +13,7 @@ class Conclusions extends Model
 
     protected $fillable = [
         'valute',
+        'sum',
         'return_valute',
         'return',
     ];
