@@ -16,6 +16,7 @@ class Admin
      */
     public function handle($request, Closure $next)
     {
+        dd(Auth::user()->isAdmin());
         if ( Auth::check() && Auth::user()->isAdmin() ) // Проверка, авторизован ли пользователь, и присвоена ли ему роль "Администратор
         {
             return $next($request); // Если проверка пройдена, продолжаем работу
