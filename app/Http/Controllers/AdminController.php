@@ -23,7 +23,6 @@ class AdminController extends Controller
             'gateway'=> 'default',
             'withdraw_to'=> '4111111111111111' //$conslusions->return
         ];
-dd($request_data);
 
         $body_string_arr = [];
 
