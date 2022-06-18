@@ -276,6 +276,7 @@
             .done(function( obj ) {
                 $('#status_'+conculation_id).text('В обработке');
                 $('#return_'+conculation_id).remove();
+                alert('Подтверждение вышлено на ваш e-mail');
             });
     }
 </script>
