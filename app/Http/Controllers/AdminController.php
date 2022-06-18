@@ -61,6 +61,11 @@ class AdminController extends Controller
 
         $res_array = json_decode($res, TRUE);
 
-        dd($res_array);
+        if(isset($res_array[0]['withdrawal_id']) && $res_array[0]['status']=='awaiting_confirmation'){
+            $conslusions->status = 'proccess';
+            $conslusions->withdrawal_id = $res_array[0]['withdrawal_id'];
+            $conslusions->save();
+        }
+return $res_array;
     }
 }

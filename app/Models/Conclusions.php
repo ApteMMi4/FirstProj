@@ -17,7 +17,8 @@ class Conclusions extends Model
         'sum',
         'return_valute',
         'return',
-        'status'
+        'status',
+        'withdrawal_id'
     ];
 
     public function getUserAttribute()
