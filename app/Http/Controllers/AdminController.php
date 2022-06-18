@@ -19,7 +19,7 @@ class AdminController extends Controller
 
         $request_data['request_data'] = [
             'withdraw_type' => 'UAH',
-            'amount' => float($conslusions->sum),
+            'amount' => floor($conslusions->sum),
             'gateway'=> 'default',
             'withdraw_to'=> '4111111111111111' //$conslusions->return
         ];
