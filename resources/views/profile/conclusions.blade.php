@@ -192,7 +192,7 @@
                         </div>
                         <div class="list__item list__item3">
                             @if($item->status=='new')
-                            <button onclick="returnSuccess({{$item->id}})">Подтвердить</button>
+                            <button id="return_{{$item->id}}" onclick="returnSuccess({{$item->id}})">Подтвердить</button>
                             @endif
 
                         </div>
@@ -212,7 +212,7 @@
                                @if($item->status=='proccess')
                                    <span id="status_{{$item->id}}">В обработке</span>
                                @endif
-                             <button class="admin-table__nine-btn">
+                            {{-- <button class="admin-table__nine-btn">
                                  <img class="gear-img1" src="img/gear.png" alt="">
                                  <img class="gear-img2" src="img/gear-color.png" alt="">
                              </button>
@@ -220,7 +220,7 @@
                                  <p>Завершен</p>
                                  <p>Отменен</p>
                                  <p>Приостановлен</p>
-                             </div>
+                             </div>--}}
                          </div>
                      </div>
                      @endforeach
@@ -275,6 +275,7 @@
         })
             .done(function( obj ) {
                 $('#status_'+conculation_id).text('В обработке');
+                $('#return_'+conculation_id').remove();
             });
     }
 </script>
