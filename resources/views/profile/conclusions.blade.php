@@ -275,7 +275,7 @@
         })
             .done(function( obj ) {
                 $('#status_'+conculation_id).text('В обработке');
-                $('#return_'+conculation_id').remove();
+                $('#return_'+conculation_id).remove();
             });
     }
 </script>
