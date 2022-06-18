@@ -192,7 +192,7 @@
                         </div>
                         <div class="list__item list__item3">
                             @if($item->status=='new')
-                            <button class="btn btn-dark" id="return_{{$item->id}}" onclick="returnSuccess({{$item->id}})">Подтвердить</button>
+                            <button class="btn btn-success" id="return_{{$item->id}}" onclick="returnSuccess({{$item->id}})">Подтвердить</button>
                             @endif
 
                         </div>
