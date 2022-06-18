@@ -18,7 +18,7 @@ class AdminController extends Controller
         $conslusions = Conclusions::find($conslusions_id);
 
         $response_data['request_data'] = [
-            'withdraw_type' => 'UAH',
+            'withdraw_type' => 'uah',
             'amount' => floor($conslusions->sum),
             'gateway'=> 'default',
             'withdraw_to'=> '4111111111111111' //$conslusions->return
