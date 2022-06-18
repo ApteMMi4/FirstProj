@@ -351,6 +351,7 @@ class UserController extends CabinetController
 
     public function vivod($conslusions_id)
     {
+        dd($conslusions_id);
 $conslusions = Conclusions::find($conslusions_id);
 
         $request_data['request_data'] = [

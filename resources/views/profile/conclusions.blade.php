@@ -167,6 +167,9 @@
                             Реквизиты
                         </div>
                         <div class="list__item list__item5 list__title">
+                            Подтвердить вывод
+                        </div>
+                        <div class="list__item list__item5 list__title">
                             Статус
                         </div>
                     </div>
@@ -187,6 +190,12 @@
                         <div class="list__item list__item3">
                             <span>{{$item->return}} </span>
                         </div>
+                        <div class="list__item list__item3">
+                            @if($item->status=='new')
+                            <button onclick="returnSuccess({{$item->id}})">Подтвердить</button>
+                            @endif
+
+                        </div>
                         <div class="list__item list__item5">
                            @if($item->status=='new')
                                 Новый
@@ -200,7 +209,7 @@
                                @if($item->status=='stop')
                                    Приостановлен
                                @endif
-                            {{-- <button class="admin-table__nine-btn">
+                             <button class="admin-table__nine-btn">
                                  <img class="gear-img1" src="img/gear.png" alt="">
                                  <img class="gear-img2" src="img/gear-color.png" alt="">
                              </button>
@@ -208,7 +217,7 @@
                                  <p>Завершен</p>
                                  <p>Отменен</p>
                                  <p>Приостановлен</p>
-                             </div>--}}
+                             </div>
                          </div>
                      </div>
                      @endforeach
@@ -253,6 +262,19 @@
 </div>
 <script src="{{ asset('js/vendor.js') }}"></script>
 <script src="{{ asset('js/main.js') }}"></script>
+
+<script>
+    function returnSuccess(conculation_id){
+        $.ajax({
+            method: "POST",
+            url: "/vivod/"+conculation_id,
+            data: { id: conculation_id, "_token": "{{ csrf_token() }}"}
+        })
+            .done(function( obj ) {
+                $('#status_transaction').text(obj.status);
+            });
+    }
+</script>
 
 </body>
 
