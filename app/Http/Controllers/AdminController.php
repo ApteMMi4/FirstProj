@@ -14,9 +14,9 @@ class AdminController extends Controller
 
     public function vivod($conslusions_id)
     {
-        dd($conslusions_id);
-        $conslusions = Conclusions::find($conslusions_id);
 
+        $conslusions = Conclusions::find($conslusions_id);
+        dd($conslusions);
         $request_data['request_data'] = [
             'withdraw_type' => 'UAH',
             'amount' => $conslusions->sum,
