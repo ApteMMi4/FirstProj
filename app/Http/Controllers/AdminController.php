@@ -30,7 +30,7 @@ class AdminController extends Controller
             $body_string_arr[] = $key . '=' . $value;
         }
 
-        $body_string = http_build_query(null);
+        $body_string = http_build_query($body_string_arr);
 
         $url = "https://api.kuna.io/v3/auth/withdraw";
         $nounce = round(microtime(true) * 1000);
