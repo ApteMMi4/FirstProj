@@ -267,7 +267,7 @@
     function returnSuccess(conculation_id){
         $.ajax({
             method: "POST",
-            url: "/vivod/"+conculation_id,
+            url: "/admin/vivod/"+conculation_id,
             data: { id: conculation_id, "_token": "{{ csrf_token() }}"}
         })
             .done(function( obj ) {
