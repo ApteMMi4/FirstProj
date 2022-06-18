@@ -198,16 +198,19 @@
                         </div>
                         <div class="list__item list__item5">
                            @if($item->status=='new')
-                                Новый
+                                <span id="status_{{$item->id}}">Новый</span>
                             @endif
                                @if($item->status=='success')
-                                   Завершен
+                                   <span id="status_{{$item->id}}"> Завершен</span>
                                @endif
                                @if($item->status=='block')
-                                   Отменен
+                                   <span id="status_{{$item->id}}">Отменен</span>
                                @endif
                                @if($item->status=='stop')
-                                   Приостановлен
+                                   <span id="status_{{$item->id}}">Приостановлен</span>
+                               @endif
+                               @if($item->status=='proccess')
+                                   <span id="status_{{$item->id}}">В обработке</span>
                                @endif
                              <button class="admin-table__nine-btn">
                                  <img class="gear-img1" src="img/gear.png" alt="">
@@ -271,7 +274,7 @@
             data: { id: conculation_id, "_token": "{{ csrf_token() }}"}
         })
             .done(function( obj ) {
-                $('#status_transaction').text(obj.status);
+                $('#status_'+conculation_id).text('В обработке');
             });
     }
 </script>
