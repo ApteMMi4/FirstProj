@@ -12,7 +12,7 @@
                     <a href="{{ route('profile_conclusionsCreate') }}" class="submenu__link submenu__link--active">Создать</a>
                 </li>
                 <li class="submenu__item">
-                    <a href="{{ route('profile_conclusions') }}" class="submenu__link ">История</a>
+                    <a href="{{ route('profile_conclusionsUser') }}" class="submenu__link ">История</a>
                 </li>
                 <li class="submenu__item">
                     <a href="{{ route('profile_conclusionsPays') }}" class="submenu__link ">Массовые выплаты</a>

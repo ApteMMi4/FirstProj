@@ -199,7 +199,6 @@ class UserController extends CabinetController
             $conslusions = Conclusions::select('*')->paginate(15);
         }
 
-
         return view ('profile.conclusions',compact('conslusions'));
     }
 
@@ -208,6 +207,13 @@ class UserController extends CabinetController
         return view('profile.currencies');
     }
 
+    public function conclusionsUser()
+    {
+            $conslusions = Conclusions::where('user_id',auth()->id())->paginate(15);
+
+
+        return view ('profile.conclusionsUser',compact('conslusions'));
+    }
     public function userPage()
     {
         $transactions = Transactions::where('uder_id', auth()->id())->where('status', '!=', Transactions::BLOCK)->orderBy('id', 'desc')->get();

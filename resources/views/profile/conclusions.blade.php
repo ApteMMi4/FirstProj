@@ -163,13 +163,16 @@
                         <div class="list__item list__item2 list__title">
                             Валюта
                         </div>
+                        <div class="list__item list__item7 list__title">
+                            Сумма
+                        </div>
                         <div class="list__item list__item3 list__title">
                             Реквизиты
                         </div>
                         <div class="list__item list__item5 list__title">
                             Подтвердить вывод
                         </div>
-                        <div class="list__item list__item5 list__title">
+                        <div class="list__item list__item6 list__title">
                             Статус
                         </div>
                     </div>
@@ -187,10 +190,13 @@
                         <div class="list__item list__item2">
                             <span>{{$item->valute}}</span>
                         </div>
+                        <div class="list__item list__item7">
+                            <span>{{$item->sum}}</span>
+                        </div>
                         <div class="list__item list__item3">
                             <span>{{$item->return}} </span>
                         </div>
-                        <div class="list__item list__item3">
+                        <div class="list__item list__item6">
                             @if($item->status=='new')
                             <button class="btn btn-success" id="return_{{$item->id}}" onclick="returnSuccess({{$item->id}})">Подтвердить</button>
                             @endif

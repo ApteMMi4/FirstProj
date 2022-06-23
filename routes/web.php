@@ -62,7 +62,7 @@ Route::group(array('prefix' => 'admin'), function()
     Route::post('/status-update', [App\Http\Controllers\Profile\UserController::class, 'statusTransactionUpdate'])->name('profile_statusUpdate');
     Route::resource('/users', App\Http\Controllers\Profile\ProfileController::class);
     Route::post('/vivod/{conslusions_id}', [\App\Http\Controllers\AdminController::class, 'vivod'])->name('profile_vivod');
-
+    Route::get('/conclusions', [App\Http\Controllers\Profile\UserController::class, 'conclusions'])->name('profile_conclusions')->middleware(['2fa']);
 
     Route::get('/news/{first}/{page}/{sort}/{param}', [App\Http\Controllers\Profile\NewsController::class, 'index'])->name('news.index');
 
@@ -87,6 +87,8 @@ Route::get('/complete-registration', [App\Http\Controllers\Auth\RegisterControll
 Route::post('/2fa', function () {
     return redirect('/home');
 })->name('2fa')->middleware('2fa');
+
+Route::get('/conclusionsUser', [App\Http\Controllers\Profile\UserController::class, 'conclusionsUser'])->name('profile_conclusionsUser')->middleware(['2fa']);
 
 Route::get('/form/{payment}/{hash}', [App\Http\Controllers\OrderController::class, 'index'])->name('order.index');
 Route::post('/pay-cul', [\App\Http\Controllers\OrderController::class, 'payCul']);
