@@ -123,6 +123,10 @@ class OrderController extends Controller
         $transaction_id =$transaction->id;
 
 
+        $point = config('payments.'.$payment.'.point');
+        $mass3 = [$transaction_id,request()->getClientIp() , 'fail'];
+        $hash3 = base64_encode(implode(',' , $mass3));
+        $failUrl  = str_replace('{transaction_hash}', $hash3, $point ['fail_url']);
 
 
         if ($now > $createAt){
@@ -130,13 +134,13 @@ class OrderController extends Controller
             $transaction->status='block';
             $transaction->save();
 
-            return redirect(route('order_fail' , ['transaction_id' => $transaction_id]), 301);
+            return redirect(route('universal' , ['transaction_hash' => $hash3]), 301);
         }
 
 
         $newSession = Session::get('transaction_id_'. $shop_id.'_'.$paymForm->id);
 
-        return view('order.order', compact('payResult', 'transaction_id', 'price', 'currency', 'shop_id', 'payment', 'total', 'tot2','now', 'createAt', 'createAtt', 'jsCreateAtt'));
+        return view('order.order', compact('payResult', 'transaction_id', 'price', 'currency', 'shop_id', 'payment', 'total', 'tot2','now', 'createAt', 'createAtt', 'jsCreateAtt', 'failUrl'));
 
     }
 
