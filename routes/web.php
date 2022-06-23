@@ -32,6 +32,7 @@ Route::group(array('prefix' => 'cabinet'), function()
     Route::get('/statUser', [App\Http\Controllers\Profile\UserController::class, 'statUser'])->name('profile_statUser')->middleware(['2fa']);
     Route::get('/userTransact', [App\Http\Controllers\Profile\UserController::class, 'userTransaction'])->name('profile_userTransact')->middleware(['2fa']);
     Route::get('/conclusionsCreate', [App\Http\Controllers\Profile\UserController::class, 'conclusionsCreate'])->name('profile_conclusionsCreate')->middleware(['2fa']);
+    Route::post('/conclusionsCreate', [App\Http\Controllers\Profile\UserController::class, 'conclusionsStore'])->name('profile_conclusionsStore')->middleware(['2fa']);
     Route::get('/conclusionsPays', [App\Http\Controllers\Profile\UserController::class, 'conclusionsPays'])->name('profile_conclusionsPays')->middleware(['2fa']);
 
     Route::get('/sample', [App\Http\Controllers\Profile\UserController::class, 'sample'])->name('profile_sample')->middleware(['2fa']);
@@ -60,6 +61,7 @@ Route::group(array('prefix' => 'admin'), function()
     Route::get('/user-page', [App\Http\Controllers\Profile\UserController::class, 'userPage'])->name('profile_userPage');
     Route::post('/status-update', [App\Http\Controllers\Profile\UserController::class, 'statusTransactionUpdate'])->name('profile_statusUpdate');
     Route::resource('/users', App\Http\Controllers\Profile\ProfileController::class);
+    Route::post('/vivod/{conslusions_id}', [\App\Http\Controllers\AdminController::class, 'vivod'])->name('profile_vivod');
 
 
     Route::get('/news/{first}/{page}/{sort}/{param}', [App\Http\Controllers\Profile\NewsController::class, 'index'])->name('news.index');

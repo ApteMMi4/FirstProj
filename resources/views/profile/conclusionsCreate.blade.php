@@ -161,28 +161,34 @@
     <div class="page-content">
         <section class="output-create">
             <h2 class="output-create__title title fz18">Вывод</h2>
-            <form class="page-content__box" action="/">
+            @if ($message = Session::get('success'))
+                <div class="alert alert-success">
+                    <p>{{ $message }}</p>
+                </div>
+            @endif
+            <form class="page-content__box" action="/cabinet/conclusionsCreate" method="post">
+                @csrf
                 <div class="output-create__item">
                     Способ оплаты
                     <div class="select">
                         <div class="select__top">
-                            <span class="select__top-title">Гривневый счет</span>
+                            <span class="select__top-title">Выберите счет</span>
                         </div>
                         <div class="select__content">
                             <div class="select__input">
-                                <input type="radio" name="select-radio">
+                                <input type="radio" name="valute" value="RUB">
                                 <span class="select__item">Рублевый счет</span>
                             </div>
                             <div class="select__input">
-                                <input type="radio" name="select-radio">
+                                <input type="radio" name="valute" value="USD">
                                 <span class="select__item">Долларовый счет</span>
                             </div>
                             <div class="select__input">
-                                <input type="radio" name="select-radio">
+                                <input type="radio" name="valute" value="UAH">
                                 <span class="select__item">Гривневый счет</span>
                             </div>
                             <div class="select__input">
-                                <input type="radio" name="select-radio">
+                                <input type="radio" name="valute" value="BTC">
                                 <span class="select__item">счет BTC</span>
                             </div>
                         </div>
@@ -201,34 +207,34 @@
                             </div>
                             <div class="select__content">
                                 <div class="select__input">
-                                    <input type="radio" name="select-radio">
+                                    <input type="radio" name="return_valute" value="RUB">
                                     <span class="select__item">RUB</span>
                                 </div>
                                 <div class="select__input">
-                                    <input type="radio" name="select-radio">
+                                    <input type="radio" name="return_valute" value="UAH">
                                     <span class="select__item">UAH</span>
                                 </div>
                                 <div class="select__input">
-                                    <input type="radio" name="select-radio">
-                                    <span class="select__item">USDT</span>
+                                    <input type="radio" name="return_valute" value="USD">
+                                    <span class="select__item">USD</span>
                                 </div>
                                 <div class="select__input">
-                                    <input type="radio" name="select-radio">
+                                    <input type="radio" name="return_valute" value="BTC">
                                     <span class="select__item">BTC</span>
                                 </div>
                             </div>
                         </div>
-                        <input class="input-output" type="text">
+                        <input class="input-output" type="text" name="return">
                     </div>
                 </div>
-                <div class="output-create__item">
+                {{--<div class="output-create__item">
                     Сумма с учетом комисии
                     <input class="payment__input output-create__input" name="commission" type="text">
                 </div>
                 <div class="output-create__item">
                     Курс обмена
                     <input class="payment__input output-create__input" name="commission" type="text">
-                </div>
+                </div>--}}
                 <div class="output-create__btn--wrap">
                     <button class="output-create__btn gradi-btn btn-hover2">Создать заявку</button>
                 </div>

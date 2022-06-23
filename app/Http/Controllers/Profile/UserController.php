@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Profile;
 
 use App\Http\Controllers\CabinetController;
 use App\Http\Requests\TransactionUrlRequest;
+use App\Models\Conclusions;
 use App\Models\PaymentForm;
 use App\Models\PaymentList;
 use App\Models\Transactions;
@@ -12,6 +13,7 @@ use Illuminate\Http\Request;
 use Auth;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
+use function React\Promise\all;
 
 class UserController extends CabinetController
 {
@@ -189,7 +191,16 @@ class UserController extends CabinetController
 
     public function conclusions()
     {
-        return view('profile.conclusions');
+        if (auth()->user()->isUser())
+        {
+            $conslusions = Conclusions::where('user_id',auth()->id())->paginate(15);
+        }
+        else{
+            $conslusions = Conclusions::select('*')->paginate(15);
+        }
+
+
+        return view ('profile.conclusions',compact('conslusions'));
     }
 
     public function currencies()
@@ -300,6 +311,14 @@ class UserController extends CabinetController
         return view('profile.conclusionsCreate');
     }
 
+    public function conclusionsStore(Request $request)
+    {
+        $vivod = $request->all();
+        $vivod ['user_id']= auth()->id();
+        Conclusions::create($vivod);
+        return back()->with('success', 'Заявка отправлена!');
+    }
+
     public function conclusionsPays()
     {
         return view('profile.conclusionsPays');
@@ -329,10 +348,7 @@ class UserController extends CabinetController
         return ['status'=>$listStatus[$status]];
 
     }
-//    public function changePass()
-//    {
-//        return view('profile.changePass');
-//    }
+
 
 
 }
