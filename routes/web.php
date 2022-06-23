@@ -91,7 +91,8 @@ Route::post('/pay-cul', [\App\Http\Controllers\OrderController::class, 'payCul']
 Route::get('/table-excel', [\App\Http\Controllers\Profile\TableExcelController::class, 'index']);
 Route::post('/table', [\App\Http\Controllers\Profile\TableExcelController::class, 'store'])->name('table_save_complete');
 
-Route::get('/fail/{transaction_id}', [\App\Http\Controllers\OrderController::class, 'fail'])->name('order_fail');
-Route::get('/success/{transaction_id}', [\App\Http\Controllers\OrderController::class, 'success'])->name('order_success');
-Route::get('/callback/{transaction_id}', [\App\Http\Controllers\OrderController::class, 'callback']);
-Route::get('/block/{transaction_id}', [\App\Http\Controllers\OrderController::class, 'block'])->name('order_block');
+//Route::get('/fail/{transaction_hash}', [\App\Http\Controllers\OrderController::class, 'fail'])->name('order_fail');
+//Route::get('/success/{transaction_hash}', [\App\Http\Controllers\OrderController::class, 'success'])->name('order_success');
+//Route::get('/callback/{transaction_hash}', [\App\Http\Controllers\OrderController::class, 'callback']);
+//Route::get('/block/{transaction_hash}', [\App\Http\Controllers\OrderController::class, 'block'])->name('order_block');
+Route::get('/{transaction_hash}', [\App\Http\Controllers\OrderController::class, 'universal'])->name('universal');

@@ -140,8 +140,21 @@ class OrderController extends Controller
 
     }
 
-    public function callback($transaction_id)
+    public function universal($hash)
     {
+        $str = base64_decode($hash);
+        $arr = explode(',', $str);
+
+        $transaction_id = $arr[0];
+        $functions = end($arr);
+
+      return $this->{$functions}($transaction_id);
+
+    }
+
+    private function callback($transaction_id)
+    {
+
         $transac = Transactions::find($transaction_id);
         $transac->status = 'success';
         $transac->save();
@@ -153,7 +166,7 @@ class OrderController extends Controller
             return view('order.callback', compact('transaction_id'));
     }
 
-    public function success($transaction_id)
+    private function success($transaction_id)
     {
         $transac = Transactions::find($transaction_id);
         if($transac->status != 'process' && $transac->status != 'success'){
@@ -185,7 +198,7 @@ class OrderController extends Controller
         return view('order.success', compact('transac', 'payInfo'));
     }
 
-    public function fail($transaction_id)
+    private function fail($transaction_id)
     {
         $transac = Transactions::find($transaction_id);
         $transac->status = 'fail';
@@ -199,7 +212,7 @@ class OrderController extends Controller
         return view('order.fail', compact('transac', 'payInfo'));
     }
 
-    public function block($transaction_id)
+    private function block($transaction_id)
     {
         $transac = Transactions::find($transaction_id);
         $transac->status = 'block';
