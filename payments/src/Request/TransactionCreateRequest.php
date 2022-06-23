@@ -37,9 +37,18 @@ class TransactionCreateRequest extends ApiRequest
         $paymentSlug = $res->get('payment');
 
         $point = config('payments.'.$paymentSlug.'.point');
-        $point ['callback_url'] = str_replace('{transaction_id}', $res->get('transaction_id'), $point ['callback_url']);
-        $point ['success_url'] = str_replace('{transaction_id}', $res->get('transaction_id'), $point ['success_url']);
-        $point ['fail_url'] = str_replace('{transaction_id}', $res->get('transaction_id'), $point ['fail_url']);
+        $mass1 = [$res->get('transaction_id'),request()->getClientIp() , 'callback'];
+        $mass2 = [$res->get('transaction_id'),request()->getClientIp() , 'success'];
+        $mass3 = [$res->get('transaction_id'),request()->getClientIp() , 'fail'];
+
+        $hash1 = base64_encode(implode(',' , $mass1));
+        $hash2 = base64_encode(implode(',' , $mass2));
+        $hash3 = base64_encode(implode(',' , $mass3));
+
+        $point ['callback_url'] = str_replace('{transaction_hash}', $hash1, $point ['callback_url']);
+        $point ['success_url'] = str_replace('{transaction_hash}', $hash2, $point ['success_url']);
+        $point ['fail_url'] = str_replace('{transaction_hash}', $hash3, $point ['fail_url']);
+
 
         return array(
             'locale' => 'ru',
