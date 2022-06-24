@@ -7,7 +7,7 @@
     <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="theme-color" content="#111111">
-    <title>Admin</title>
+    <title>Мультивалютная обменная платформа фиата в криптовалюты.</title>
     <link rel="stylesheet" href="css/vendor.css">
     <link rel="stylesheet" href="css/main.css">
 </head>
@@ -19,18 +19,18 @@
                 <div class="header__inner">
                     <a class="header__logo">
                         <img class="header__icon" src="img/logo.png" alt="">
-                        apipay.is
+                        24Pay.Io
                     </a>
                     <nav class="header__nav">
                         <ul class="header__nav-list">
                             <li class="header__nav-item">
-                                <a class="header__nav-link" href="#">О нас </a>
+                                <a class="header__nav-link" href="about">О нас </a>
                             </li>
                             <li class="header__nav-item">
-                                <a class="header__nav-link" href="#">API документация</a>
+                                <a class="header__nav-link" href="news">Новости</a>
                             </li>
                             <li class="header__nav-item">
-                                <a class="header__nav-link" href="#">Контакты</a>
+                                <a class="header__nav-link" href="contact">Контакты</a>
                             </li>
                         </ul>
                         <button class="main__btn main__btn--header">Авторизация</button>
@@ -45,32 +45,7 @@
 
         </header>
 
-        <div class="navigation">
-            <a class="navigation__link" href="admin-currencies.html">Админка валюты</a>
-            <a class="navigation__link" href="admin-direction.html">Направление обмена</a>
-            <a class="navigation__link" href="admin-transactions.html">Админка транзакции</a>
-            <a class="navigation__link" href="admin-users.html">Админка обмен валю пользователи</a>
-            <a class="navigation__link" href="admin.html">Админка</a>
-            <a class="navigation__link" href="arbitrary-payment-link.html">Лк произвольный платеж ссылка</a>
-            <a class="navigation__link" href="arbitrary-payment.html">Лк произвольный платеж</a>
-            <a class="navigation__link" href="conclusions.html">Админка вывод</a>
-            <a class="navigation__link" href="discount.html">Лк скидка</a>
-            <a class="navigation__link" href="exchange-requests.html">Админка обмен валю заявки</a>
-            <a class="navigation__link" href="index.html">главная</a>
-            <a class="navigation__link" href="main-arbitrary-payment.html">главная Произвольный платеж</a>
-            <a class="navigation__link" href="main-arbitrary-payment2.html">главная Произвольный платеж2</a>
-            <a class="navigation__link" href="main-exchange.html">Главная обмен 2</a>
-            <a class="navigation__link" href="main-exchange2.html">Главная обмен 3</a>
-            <a class="navigation__link" href="output-create.html">Лк вывод</a>
-            <a class="navigation__link" href="output.html">Лк вывод история</a>
-            <a class="navigation__link" href="payment.html">Лк вывод масов</a>
-            <a class="navigation__link" href="pc-profile.html">Лк профиль</a>
-            <a class="navigation__link" href="pc-transactions.html">Лк транзакции</a>
-            <a class="navigation__link" href="personal-area.html">Лк</a>
-            <a class="navigation__link" href="ref-prog-settings.html">Админка валюты партнерка</a>
-            <a class="navigation__link" href="sample.html">Лк вывод шаблоны</a>
-            <a class="navigation__link" href="user-page.html">Админка пользователи</a>
-        </div>
+
 
         <section class="hero">
             <div class="container">
@@ -83,11 +58,15 @@
                             <h4 class="hero__pay-title pay-title">Пополнить аккаунт</h4>
                         </div>
                         <label class="hero__pay-input-outer pay-input-outer">
-                            <span class="hero__pay-input-sup pay-input-sup">Идентификатор кошелька</span>
+                            <span class="hero__pay-input-sup pay-input-sup">ID пользователя</span>
                             <input class="hero__pay-input pay-input popup__input" type="text">
-                            <span class="hero__pay-input-sub pay-input-sub">Введите номер телефона или e-mail,
-                                указанный при
-                                регистрации</span>
+                            <span class="hero__pay-input-sub pay-input-sub">Введите уникальный ID пользователя</span>
+                        </label>
+                        <label class="hero__pay-input-outer pay-input-outer">
+                            <span class="hero__pay-input-sup pay-input-sup">Email</span>
+                            <input class="hero__pay-input pay-input popup__input" type="text">
+                            <span class="hero__pay-input-sub pay-input-sub">Введите e-mail для получения
+                                24Pay-Code</span>
                         </label>
                         <label class="hero__pay-input-outer pay-input-outer">
                             <span class="hero__pay-input-sup pay-input-sup">Сумма</span>
@@ -103,15 +82,16 @@
                                         <li class="pay-cur-list-item">
                                             грн.
                                         </li>
-                                        <li class="pay-cur-list-item">
-                                            руб.
-                                        </li>
-                                        <li class="pay-cur-list-item">
-                                            дол.
-                                        </li>
                                     </ul>
                                 </div>
                             </div>
+
+                            <label class="checkbox-block authorization-checkbox">
+                                <input class="checkbox " type="checkbox">
+                                <a href="agreement" class="checkbox__text">
+                                    Принимаю Пользовательское соглашение</a>
+
+                            </label>
                         </label>
                         <button class="hero__pay-btn pay-btn main__btn">
                             Пополнить
@@ -122,14 +102,13 @@
                             <div class="header__logo">
                                 <img class="header__icon" src="img/logo.png" alt="img">
                             </div>
-                            <h4 class="hero__pay-title pay-title">Покупка кодов</h4>
+                            <h4 class="hero__pay-title pay-title">24Pay-Code</h4>
                         </div>
                         <label class="hero__pay-input-outer pay-input-outer">
-                            <span class="hero__pay-input-sup pay-input-sup">Идентификатор кошелька</span>
+                            <span class="hero__pay-input-sup pay-input-sup">Email</span>
                             <input class="hero__pay-input pay-input popup__input" type="text">
-                            <span class="hero__pay-input-sub pay-input-sub">Введите номер телефона или e-mail,
-                                указанный при
-                                регистрации</span>
+                            <span class="hero__pay-input-sub pay-input-sub">Введите e-mail для получения
+                                24Pay-Code</span>
                         </label>
                         <label class="hero__pay-input-outer pay-input-outer">
                             <span class="hero__pay-input-sup pay-input-sup">Сумма</span>
@@ -145,15 +124,15 @@
                                         <li class="pay-cur-list-item">
                                             грн.
                                         </li>
-                                        <li class="pay-cur-list-item">
-                                            руб.
-                                        </li>
-                                        <li class="pay-cur-list-item">
-                                            дол.
-                                        </li>
+
                                     </ul>
                                 </div>
                             </div>
+                            <label class="checkbox-block authorization-checkbox">
+                                <input class="checkbox " type="checkbox">
+                                <a href="agreement" class="checkbox__text">
+                                    Принимаю Пользовательское соглашение</a>
+                            </label>
                         </label>
                         <button class="hero__pay-btn pay-btn main__btn">
                             Купить
@@ -180,7 +159,8 @@
                             <img class="benefits__num" src="img/withdrawal.svg" alt="#">
                             <div class="benefits__info">
                                 <p class="benefits__info-title">Платежная платформа</p>
-                                <p class="benefits__info-text">Мультивалютная платформа поддерживающая фиатные и криптовалюты</p>
+                                <p class="benefits__info-text">Мультивалютная платформа поддерживающая фиатные и
+                                    криптовалюты</p>
                             </div>
                         </li>
                         <li class="benefits__item">
@@ -195,7 +175,8 @@
                             <img class="benefits__num" src="img/protect.svg" alt="#">
                             <div class="benefits__info">
                                 <p class="benefits__info-title">Хранение средств</p>
-                                <p class="benefits__info-text">Надежное хранение ваших средств обеспечивает сертификат безопасности SSL-256 битным шифрованием </p>
+                                <p class="benefits__info-text">Надежное хранение ваших средств обеспечивает сертификат
+                                    безопасности SSL-256 битным шифрованием </p>
                             </div>
                         </li>
                     </ul>
@@ -216,42 +197,43 @@
                     <ul class="partners__list">
                         <li class="partners__item">
                             <a href="#">
-                                <img src="img/partners.png" alt="">
+                                <img src="img/Bitcoin.svg.png" alt="">
                             </a>
                         </li>
                         <li class="partners__item">
                             <a href="#">
-                                <img src="img/partners.png" alt="">
+                                <img src="img/tether-logo.png" alt="">
                             </a>
                         </li>
                         <li class="partners__item">
                             <a href="#">
-                                <img src="img/partners.png" alt="">
+                                <img src="img/Ethereum_logo.png" alt="">
                             </a>
                         </li>
                         <li class="partners__item">
                             <a href="#">
-                                <img src="img/partners.png" alt="">
+                                <img src="img/tron-trx-logo.png" alt="">
                             </a>
                         </li>
                         <li class="partners__item">
                             <a href="#">
-                                <img src="img/partners.png" alt="">
+                                <img src="img/litecoin-ltc-logo.png" alt="">
+                            </a>
+
+                        </li>
+                        <li class="partners__item">
+                            <a href="#">
+                                <img src="img/xrp.png" alt="">
                             </a>
                         </li>
                         <li class="partners__item">
                             <a href="#">
-                                <img src="img/partners.png" alt="">
+                                <img src="img/logo.svg" alt="">
                             </a>
                         </li>
                         <li class="partners__item">
                             <a href="#">
-                                <img src="img/partners.png" alt="">
-                            </a>
-                        </li>
-                        <li class="partners__item">
-                            <a href="#">
-                                <img src="img/partners.png" alt="">
+                                <img src="img/easypay.png" alt="">
                             </a>
                         </li>
                         <li class="partners__item">
@@ -304,7 +286,7 @@
                                         </h4>
                                         <p class="accounts__card-text">
                                             Покупка/продажа валюты и криптовалюты 24/7
-                                            Инвестируйте в цифровые активы, получайте дополнительный доход
+
                                         </p>
                                     </div>
                                     <div class="accounts__card">
@@ -315,8 +297,8 @@
                                             Вывод на карту
                                         </h4>
                                         <p class="accounts__card-text">
-                                            Переводы средств на карты всех банков. Удобный интерфейс и история платежей
-                                            с комментариями, помогает контролировать расходы
+                                            Переводы средств на карты всех банков. Удобный интерфейс и история платежей.
+
                                         </p>
                                     </div>
                                     <div class="accounts__card">
@@ -327,7 +309,7 @@
                                             Перевод внутри платформы
                                         </h4>
                                         <p class="accounts__card-text">
-                                            Мгновенные переводы между пользователями платформы БЕЗ комиссии для всех
+                                            Мгновенные переводы между пользователями платформы без комиссии для всех
                                             валют
                                         </p>
                                     </div>
@@ -343,19 +325,20 @@
                                             Прием платежей
                                         </h4>
                                         <p class="accounts__card-text">
-                                            Прием/выплата гривны. Криптопроцессинг BTC, ETH, USDT. Автоконвертация
+                                            Прием/выплата гривны. Криптопроцессинг USDT TRC 20, ETH, TRX.
+                                            Автоконвертация
                                         </p>
                                     </div>
                                     <div class="accounts__card">
                                         <div class="accounts__img-outer">
-                                            <img src="img/sepa.svg" alt="img">
+                                            <img src="img/payment.svg" alt="img">
                                         </div>
                                         <h4 class="accounts__card-title">
-                                            SEPA EURO
+                                            Выставление счетов
                                         </h4>
                                         <p class="accounts__card-text">
-                                            Используйте преимущества платформы для работы с Евро. Обмен криптовалют для
-                                            граждан EU и Европейских компаний
+                                            Выставление счетов клиентам на Email, Telegram как в фиат так и в
+                                            криптовалюте.
                                         </p>
                                     </div>
                                     <div class="accounts__card">
@@ -392,7 +375,7 @@
                                 </div>
                                 <div class="invoicing__info-text">
                                     <h5 class="invoicing__info-title">Оплата счетов в криптовалютах</h5>
-                                    <p class="invoicing__info-text">Прием платежей в BTC, USDT, ETH</p>
+                                    <p class="invoicing__info-text">Прием платежей в USDT TRC20, ETH, TRX.</p>
                                 </div>
                             </div>
                             <div class="invoicing__info-block">
@@ -400,7 +383,7 @@
                                     <img src="img/uah.svg" alt="img">
                                 </div>
                                 <div class="invoicing__info-text">
-                                    <h5 class="invoicing__info-title">Оплата счетов в гривне</h5>
+                                    <h5 class="invoicing__info-title">Оплата счетов в фиате</h5>
                                     <p class="invoicing__info-text">Прием платежей любой банковской картой Украины</p>
                                 </div>
                             </div>
@@ -409,8 +392,9 @@
                                     <img src="img/infinity.svg" alt="img">
                                 </div>
                                 <div class="invoicing__info-text">
-                                    <h5 class="invoicing__info-title">Оплата счетов в криптовалютах</h5>
-                                    <p class="invoicing__info-text">БЕЗ комиссий для зарегистрированных пользователей
+                                    <h5 class="invoicing__info-title">Неограниченное выставление счетов</h5>
+                                    <p class="invoicing__info-text">Выставляйте счета клиентам без ограничений! Только
+                                        для зарегистрированных пользователей.
                                     </p>
                                 </div>
                             </div>
@@ -418,13 +402,14 @@
                         <div class="invoicing__pay pay">
                             <div class="exchange__inner main-payment">
                                 <div class="main-payment__top doubled-title">
-                                    <h2 class="title">Оплата счета <span>ID:15151</span></h2>
+                                    <h2 class="title">Оплата счета <span>ID:№ 79856</span></h2>
                                 </div>
                                 <form class="main-payment__box main-payment__box2" action="/">
-                                    <div class="payment-amount">Сумма платежа: <span class="payment-amount__sum">100 USD</span>
+                                    <div class="payment-amount">Сумма платежа: <span class="payment-amount__sum">100
+                                            USD</span>
                                     </div>
                                     <button onclick="use_online_pay('form_pay_system3','amount');"
-                                        class="main-payment__btn main-payment__btn2 gradi-btn btn-hover2">
+                                        class=" main-payment__btn main-payment__btn2 gradi-btn btn-hover2 ">
                                         Оплатить
                                     </button>
 
@@ -468,11 +453,11 @@
                             </h5>
                             <div class="profitble__card-info">
                                 <p class="profitble__card-text">
-                                    1 % в 5 грн<br>
+                                    3 % + 5 грн<br>
                                     пополнение гривны
                                 </p>
                                 <p class="profitble__card-text">
-                                    0,5 %<br>
+                                    2 %<br>
                                     вывод гривны
                                 </p>
                             </div>
@@ -486,7 +471,7 @@
                             </h5>
                             <div class="profitble__card-info">
                                 <p class="profitble__card-text">
-                                    от 10 до 29000 грн<br>
+                                    от 100 до 14000 грн<br>
                                     за транзакцию
                                 </p>
                                 <p class="profitble__card-text">
@@ -503,10 +488,10 @@
                             </h5>
                             <div class="profitble__card-info">
                                 <p class="profitble__card-text">
-                                    0% пополнение в BTC, ETH, USDT
+                                    2,5% пополнение в USDT TRC 20, ETH, TRX
                                 </p>
                                 <p class="profitble__card-text">
-                                    Оптимизированные комиссии на вывод для быстрых транзакций
+                                    0% на отправку,только комиссия сети!
                                 </p>
                             </div>
                         </div>
@@ -570,11 +555,8 @@
             <div class="container">
                 <div class="footer__inner">
                     <div class="footer__info">
-                        <a class="header__logo">
-                            <img class="header__icon" src="img/logo.png" alt="">
-                            apipay.is
-                        </a>
-                        <p class="header__copy">© 2021 APIPAY.IS</p>
+
+
                     </div>
                     <div class="footer__menu-wrapper">
                         <nav class="footer__menu-outer">
@@ -583,35 +565,45 @@
                             </h4>
                             <ul class="footer__menu">
                                 <li class="footer__menu-item no-social">
-                                    <a href="#" class="footer__menu-link">
-                                        Комиссии
+                                    <a href="24pay-kode" class="footer__menu-link">
+                                        24Pay-Code
                                     </a>
                                 </li>
                                 <li class="footer__menu-item no-social">
-                                    <a href="#" class="footer__menu-link">
+                                    <a href="doc" class="footer__menu-link">
                                         API
                                     </a>
                                 </li>
                                 <li class="footer__menu-item no-social">
-                                    <a href="#" class="footer__menu-link">
-                                        SDK
+                                    <a href="fees" class="footer__menu-link">
+                                        Комиссии
                                     </a>
                                 </li>
                                 <li class="footer__menu-item no-social">
-                                    <a href="#" class="footer__menu-link">
-                                        Плагин для premium
+                                    <a href="invoice" class="footer__menu-link">
+                                        Invoice
                                     </a>
                                 </li>
                             </ul>
                         </nav>
                         <nav class="footer__menu-outer">
                             <h4 class="footer__menu-title">
-                                Пользователю
+                                Информация
                             </h4>
                             <ul class="footer__menu">
                                 <li class="footer__menu-item no-social">
-                                    <a href="#" class="footer__menu-link">
-                                        Партнерство
+                                    <a href="faq" class="footer__menu-link">
+                                        FAQ
+                                    </a>
+                                </li>
+                                <li class="footer__menu-item no-social">
+                                    <a href="blog" class="footer__menu-link">
+                                        Блог
+                                    </a>
+                                </li>
+                                <li class="footer__menu-item no-social">
+                                    <a href="partners" class="footer__menu-link">
+                                        Партнерам
                                     </a>
                                 </li>
                             </ul>
@@ -622,13 +614,18 @@
                             </h4>
                             <ul class="footer__menu">
                                 <li class="footer__menu-item no-social">
-                                    <a href="#" class="footer__menu-link">
-                                        Texttext text text
+                                    <a href="agreement" class="footer__menu-link">
+                                        Пользовательское соглашение
                                     </a>
                                 </li>
                                 <li class="footer__menu-item no-social">
-                                    <a href="#" class="footer__menu-link">
-                                        Texttext text text
+                                    <a href="privacy-policy" class="footer__menu-link">
+                                        Политика конфиденциальности
+                                    </a>
+                                </li>
+                                <li class="footer__menu-item no-social">
+                                    <a href="aml-kyc" class="footer__menu-link">
+                                        Политика AML/KYC
                                     </a>
                                 </li>
                             </ul>
@@ -669,13 +666,16 @@
                                         </div>
                                         Telegram
                                     </a>
+
                                 </li>
                             </ul>
                         </nav>
                     </div>
                 </div>
             </div>
+            <p class="header__copy">© 2021 - 2022 24Pay.Io</p>
         </footer>
+
     </div>
     <script src="js/vendor.js"></script>
     <script src="js/main.js"></script>
