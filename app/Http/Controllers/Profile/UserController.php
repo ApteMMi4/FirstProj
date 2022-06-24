@@ -193,10 +193,10 @@ class UserController extends CabinetController
     {
         if (auth()->user()->isUser())
         {
-            $conslusions = Conclusions::where('user_id',auth()->id())->paginate(15);
+            $conslusions = Conclusions::where('user_id',auth()->id())->orderBy('id', 'desc')->paginate(15);
         }
         else{
-            $conslusions = Conclusions::select('*')->paginate(15);
+            $conslusions = Conclusions::select('*')->orderBy('id', 'desc')->paginate(15);
         }
 
         return view ('profile.conclusions',compact('conslusions'));
