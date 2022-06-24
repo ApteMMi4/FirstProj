@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    toggleSlideItem('.profile-main__btn', '.profile__content', 300);
+    toggleSlideItem('.profile-main__btn', '.profile-hov-btn', 300);
     toggleFadeItem('.sample-popup__close-change', '.sample-popup-change', 400);
     toggleFadeItem('.sample__btn-change', '.sample-popup-change', 400);
 

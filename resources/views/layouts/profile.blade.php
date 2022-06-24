@@ -48,7 +48,7 @@
                     <img class="profile__icon2" loading="lazy" src="{{ asset('img/settings.png') }}" alt="">
                 </div>
             </button>
-            <div class="profile__content">
+            <div class="profile__content profile-hov-btn">
                 <a href="{{ route('profile_me') }}" class="profile__btn profile-hover">
                     <img class="profile__icon3" loading="lazy" src="{{ asset('img/profile.png') }}" alt="">
                     <span class="profile__btn-text profile__btn-text--one">Профиль</span>
