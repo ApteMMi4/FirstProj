@@ -99,4 +99,4 @@ Route::post('/table', [\App\Http\Controllers\Profile\TableExcelController::class
 //Route::get('/success/{transaction_hash}', [\App\Http\Controllers\OrderController::class, 'success'])->name('order_success');
 //Route::get('/callback/{transaction_hash}', [\App\Http\Controllers\OrderController::class, 'callback']);
 //Route::get('/block/{transaction_hash}', [\App\Http\Controllers\OrderController::class, 'block'])->name('order_block');
-Route::get('/{transaction_hash}', [\App\Http\Controllers\OrderController::class, 'universal'])->name('universal');
+Route::get('/universal/{transaction_hash}', [\App\Http\Controllers\OrderController::class, 'universal'])->name('universal');
