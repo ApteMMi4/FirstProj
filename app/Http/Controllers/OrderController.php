@@ -41,15 +41,17 @@ class OrderController extends Controller
 
         $paymForm = PaymentForm::where('user_id', $shop_id)->where('blocked', 0)->where('id', $url_id)->first();
 
-dd($paymForm);
+
         if(!$paymForm){
 
+            $paymForm = PaymentForm::where('user_id', $shop_id)->where('id', $url_id)->first();
+
             $point = config('payments.'.$payment.'.point');
-            $mass3 = [$transaction_id,request()->getClientIp() , 'fail'];
+            $mass3 = [$paymForm->transaction_id,request()->getClientIp() , 'fail'];
             $hash3 = base64_encode(implode(',' , $mass3));
             $failUrl  = str_replace('{transaction_hash}', $hash3, $point ['fail_url']);
 
-            return redirect(route('order_block'));
+            return redirect(route('universal' , ['transaction_hash' => $hash3]), 301);
         }
         $transaction = Transactions::find($paymForm->transaction_id);
 
