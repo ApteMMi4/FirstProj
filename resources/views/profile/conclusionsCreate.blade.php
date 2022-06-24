@@ -176,6 +176,10 @@
                         </div>
                         <div class="select__content">
                             <div class="select__input">
+                                <input type="radio" name="valute" value="UAH" checked>
+                                <span class="select__item">UAH</span>
+                            </div>
+                            <div class="select__input">
                                 <input type="radio" name="valute" value="USD">
                                 <span class="select__item">USD</span>
                             </div>
@@ -207,7 +211,7 @@
                             </div>
                             <div class="select__content">
                                 <div class="select__input">
-                                    <input type="radio" name="return_valute" value="UAH">
+                                    <input type="radio" name="return_valute" value="UAH" checked>
                                     <span class="select__item">Visa/Mc UAH</span>
                                 </div>
                                 <div class="select__input">
