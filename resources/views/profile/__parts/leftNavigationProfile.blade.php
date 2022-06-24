@@ -20,9 +20,9 @@
                 <li class="submenu__item">
                     <a href="{{ route('profile_sample') }}" class="submenu__link ">Шаблоны</a>
                 </li>
-                <li class="submenu__item">
-                    <a href="{{ route('profile_discUser') }}" class="submenu__link @sublink5">Скидка</a>
-                </li>
+{{--                <li class="submenu__item">--}}
+{{--                    <a href="{{ route('profile_discUser') }}" class="submenu__link @sublink5">Скидка</a>--}}
+{{--                </li>--}}
             </ul>
         </li>
 
