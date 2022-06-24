@@ -95,7 +95,7 @@
                 payOrder.classList.add("disabled");
                 payOrder.setAttribute("disabled", "disabled");
 
-                document.location.href='/{{$failUrl}}';
+                document.location.href='{{$failUrl}}';
             }
             var strNow = now+'';
             var strNewData = newDate.getTime()+'';
