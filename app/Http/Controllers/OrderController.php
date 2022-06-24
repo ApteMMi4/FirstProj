@@ -127,7 +127,6 @@ class OrderController extends Controller
         $mass3 = [$transaction_id,request()->getClientIp() , 'fail'];
         $hash3 = base64_encode(implode(',' , $mass3));
         $failUrl  = str_replace('{transaction_hash}', $hash3, $point ['fail_url']);
-dd($failUrl);
 
         if ($now > $createAt){
 
