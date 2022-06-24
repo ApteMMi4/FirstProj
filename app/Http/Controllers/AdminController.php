@@ -21,7 +21,8 @@ class AdminController extends Controller
             'withdraw_type' => 'uah',
             'amount' => floor($conslusions->sum),
             'gateway'=> 'default',
-            'withdraw_to'=> '4111111111111111' //$conslusions->return
+            'withdraw_to'=>$conslusions->return
+                //'4111111111111111' //$conslusions->return
         ];
 
         $body_string_arr = [];
