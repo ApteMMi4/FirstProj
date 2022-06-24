@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Conclusions;
+use App\Models\Transactions;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
@@ -66,6 +67,9 @@ class AdminController extends Controller
             $conslusions->status = 'proccess';
             $conslusions->withdrawal_id = $res_array[0]['withdrawal_id'];
             $conslusions->save();
+
+            $transMass = ['total'=>('-'.floor($conslusions->sum)), 'currency'=>'UAH', 'status'=>'success'];
+            Transactions::create($transMass);
         }
 return $res_array;
     }

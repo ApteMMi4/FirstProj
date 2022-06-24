@@ -123,6 +123,10 @@ class OrderController extends Controller
         $transaction_id =$transaction->id;
 
 
+        $point = config('payments.'.$payment.'.point');
+        $mass3 = [$transaction_id,request()->getClientIp() , 'fail'];
+        $hash3 = base64_encode(implode(',' , $mass3));
+        $failUrl  = str_replace('{transaction_hash}', $hash3, $point ['fail_url']);
 
 
         if ($now > $createAt){
@@ -130,18 +134,31 @@ class OrderController extends Controller
             $transaction->status='block';
             $transaction->save();
 
-            return redirect(route('order_fail' , ['transaction_id' => $transaction_id]), 301);
+            return redirect(route('universal' , ['transaction_hash' => $hash3]), 301);
         }
 
 
         $newSession = Session::get('transaction_id_'. $shop_id.'_'.$paymForm->id);
 
-        return view('order.order', compact('payResult', 'transaction_id', 'price', 'currency', 'shop_id', 'payment', 'total', 'tot2','now', 'createAt', 'createAtt', 'jsCreateAtt'));
+        return view('order.order', compact('payResult', 'transaction_id', 'price', 'currency', 'shop_id', 'payment', 'total', 'tot2','now', 'createAt', 'createAtt', 'jsCreateAtt', 'failUrl'));
 
     }
 
-    public function callback($transaction_id)
+    public function universal($hash)
     {
+        $str = base64_decode($hash);
+        $arr = explode(',', $str);
+
+        $transaction_id = $arr[0];
+        $functions = end($arr);
+
+      return $this->{$functions}($transaction_id);
+
+    }
+
+    private function callback($transaction_id)
+    {
+
         $transac = Transactions::find($transaction_id);
         $transac->status = 'success';
         $transac->save();
@@ -153,7 +170,7 @@ class OrderController extends Controller
             return view('order.callback', compact('transaction_id'));
     }
 
-    public function success($transaction_id)
+    private function success($transaction_id)
     {
         $transac = Transactions::find($transaction_id);
         if($transac->status != 'process' && $transac->status != 'success'){
@@ -185,7 +202,7 @@ class OrderController extends Controller
         return view('order.success', compact('transac', 'payInfo'));
     }
 
-    public function fail($transaction_id)
+    private function fail($transaction_id)
     {
         $transac = Transactions::find($transaction_id);
         $transac->status = 'fail';
@@ -199,7 +216,7 @@ class OrderController extends Controller
         return view('order.fail', compact('transac', 'payInfo'));
     }
 
-    public function block($transaction_id)
+    private function block($transaction_id)
     {
         $transac = Transactions::find($transaction_id);
         $transac->status = 'block';
