@@ -172,24 +172,24 @@
                     Способ оплаты
                     <div class="select">
                         <div class="select__top">
-                            <span class="select__top-title">UAH (12567.88)</span>
+                            <span class="select__top-title">UAH</span>
                         </div>
                         <div class="select__content">
                             <div class="select__input">
                                 <input type="radio" name="valute" value="USD">
-                                <span class="select__item">USD (12567.88)</span>
+                                <span class="select__item">USD</span>
                             </div>
                             <div class="select__input">
                                 <input type="radio" name="valute" value="USD">
-                                <span class="select__item">USDT (7894.90)</span>
+                                <span class="select__item">USDT</span>
                             </div>
                             <div class="select__input">
                                 <input type="radio" name="valute" value="ИЕС">
-                                <span class="select__item">BTC (0.02345)</span>
+                                <span class="select__item">BTC</span>
                             </div>
                             <div class="select__input">
                                 <input type="radio" name="valute" value="BTC">
-                                <span class="select__item">ETH (2.356)</span>
+                                <span class="select__item">ETH</span>
                             </div>
                         </div>
                     </div>
@@ -227,10 +227,10 @@
                         <input class="input-output" type="text" name="return">
                     </div>
                 </div>
-                <div class="output-create__item">
-                     Получите с учетом комисии
-                    <input class="payment__input output-create__input" name="commission" type="text">
-                </div>
+{{--                <div class="output-create__item">--}}
+{{--                     Получите с учетом комисии--}}
+{{--                    <input class="payment__input output-create__input" name="commission" type="text">--}}
+{{--                </div>--}}
                {{-- <div class="output-create__item">
                     Курс обмена
                     <input class="payment__input output-create__input" name="commission" type="text">
@@ -244,8 +244,8 @@
     </div>
 
 </div>
-<script src="js/vendor.js"></script>
-<script src="js/main.js"></script>
+<script src="/js/vendor.js"></script>
+<script src="/js/main.js"></script>
 </body>
 
 @endsection
