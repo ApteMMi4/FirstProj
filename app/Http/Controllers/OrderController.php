@@ -146,9 +146,11 @@ class OrderController extends Controller
 
     public function universal($hash)
     {
+
         $str = base64_decode($hash);
-        dd($str);
         $arr = explode(',', $str);
+
+        dd($arr);
 
         $transaction_id = $arr[0];
         $functions = end($arr);
