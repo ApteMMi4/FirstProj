@@ -69,6 +69,7 @@ class AdminController extends Controller
             $conslusions->save();
 
             $transMass = ['total'=>('-'.floor($conslusions->sum)), 'currency'=>'UAH', 'status'=>'success'];
+            dd($transMass);
             Transactions::create($transMass);
         }
 return $res_array;
