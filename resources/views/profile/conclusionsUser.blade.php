@@ -157,9 +157,9 @@
                             <div class="list__item list__item2 list__title">
                                 Дата
                             </div>
-                            <div class="list__item list__item4 list__title">
-                                Аккаунт
-                            </div>
+{{--                            <div class="list__item list__item4 list__title">--}}
+{{--                                Аккаунт--}}
+{{--                            </div>--}}
                             <div class="list__item list__item2 list__title">
                                 Сумма
                             </div>
@@ -184,9 +184,9 @@
                                 <div class="list__item list__item2">
                                     <span>{{$item->created_at}}</span>
                                 </div>
-                                <div class="list__item list__item4">
-                                    <span>{{$item->user->name}}</span>
-                                </div>
+{{--                                <div class="list__item list__item4">--}}
+{{--                                    <span>{{$item->user->name}}</span>--}}
+{{--                                </div>--}}
                                 <div class="list__item list__item2">
                                     <span>{{$item->sum}}</span>
                                 </div>
