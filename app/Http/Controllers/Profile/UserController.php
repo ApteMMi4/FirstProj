@@ -209,7 +209,7 @@ class UserController extends CabinetController
 
     public function conclusionsUser()
     {
-            $conslusions = Conclusions::where('user_id',auth()->id())->orderBy('id', 'desc')->paginate(15);
+            $conslusions = Conclusions::create('user_id',auth()->id())->orderBy('id', 'desc')->paginate(15);
 
 
         return view ('profile.conclusionsUser',compact('conslusions'));
