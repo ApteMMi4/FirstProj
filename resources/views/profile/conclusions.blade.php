@@ -185,7 +185,7 @@
                             <span>{{$item->created_at}}</span>
                         </div>
                         <div class="list__item list__item4">
-                            <span>{{$item->user->id}}</span>
+                            <span>{{$item->user_id}}</span>
                         </div>
                         <div class="list__item list__item2">
                             <span>{{$item->valute}}</span>
