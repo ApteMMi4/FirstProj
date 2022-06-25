@@ -1,12 +1,12 @@
 
         <li class="nav__item">
-            <a href="{{ route('profile_statUser') }}" class="nav__link nav__link--active">Статистика</a>
+            <a href="{{ route('profile_statUser') }}" class="nav__link nav__link--active::before">Статистика</a>
         </li>
         <li class="nav__item">
-            <a href="{{ route('profile_userTransact') }}" class="nav__link ">Транзакции</a>
+            <a href="{{ route('profile_userTransact') }}" class="nav__link nav__link nav__link--active::before">Транзакции</a>
         </li>
         <li class="nav__item">
-            <span class="nav__link nav__link--active">Выводы</span>
+            <span class="nav__link nav__link--active ">Выводы</span>
             <ul class="submenu">
                 <li class="submenu__item">
                     <a href="{{ route('profile_conclusionsCreate') }}" class="submenu__link submenu__link--active">Создать</a>
@@ -27,7 +27,7 @@
         </li>
 
         <li class="nav__item">
-            <a href="#" class="nav__link nav__link-conclusions ">Api
+            <a href="#" class="nav__link nav__link-conclusions nav__link--active::before">Api
                 <span class="nav__link-conclusions-value">+1</span>
             </a>
         </li>
