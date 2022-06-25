@@ -1,9 +1,9 @@
 
         <li class="nav__item">
-            <a href="{{ route('profile_statUser') }}" class="nav__link nav__link--active position-relative">Статистика</a>
+            <a href="{{ route('profile_statUser') }}" class="nav__link nav__link--active">Статистика</a>
         </li>
         <li class="nav__item">
-            <a href="{{ route('profile_userTransact') }}" class="nav__link position-relative">Транзакции</a>
+            <a href="{{ route('profile_userTransact') }}" class="nav__link ">Транзакции</a>
         </li>
         <li class="nav__item">
             <span class="nav__link nav__link--active">Выводы</span>
@@ -12,13 +12,13 @@
                     <a href="{{ route('profile_conclusionsCreate') }}" class="submenu__link submenu__link--active">Создать</a>
                 </li>
                 <li class="submenu__item">
-                    <a href="{{ route('profile_conclusionsUser') }}" class="submenu__link submenu__link--active">История</a>
+                    <a href="{{ route('profile_conclusionsUser') }}" class="submenu__link ">История</a>
                 </li>
                 <li class="submenu__item">
-                    <a href="{{ route('profile_conclusionsPays') }}" class="submenu__link submenu__link--active">Массовые выплаты</a>
+                    <a href="{{ route('profile_conclusionsPays') }}" class="submenu__link ">Массовые выплаты</a>
                 </li>
                 <li class="submenu__item">
-                    <a href="{{ route('profile_sample') }}" class="submenu__link submenu__link--active">Шаблоны</a>
+                    <a href="{{ route('profile_sample') }}" class="submenu__link ">Шаблоны</a>
                 </li>
 {{--                <li class="submenu__item">--}}
 {{--                    <a href="{{ route('profile_discUser') }}" class="submenu__link @sublink5">Скидка</a>--}}

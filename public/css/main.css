@@ -647,7 +647,7 @@ body.scroll-hide {
   transform: translateY(-50%) translateX(-5px);
 }
 
-.nav__link.nav__link--active {
+.nav__link--active::before {
   position: absolute;
   content: "";
   width: 6px;
@@ -3877,7 +3877,7 @@ body.scroll-hide {
 
 .header {
   background-color: #222332;
-  margin-bottom: 20px;
+  margin-bottom: 260px;
 }
 
 .header__inner {
