@@ -647,7 +647,7 @@ body.scroll-hide {
   transform: translateY(-50%) translateX(-5px);
 }
 
-.nav__link--active::before {
+.nav__link.nav__link--active::before {
   position: absolute;
   content: "";
   width: 6px;
