@@ -191,7 +191,7 @@ class UserController extends CabinetController
 
     public function conclusions()
     {
-        if (auth()->user()->isAdmin())
+        if (auth()->user()->isUser())
         {
             $conslusions = Conclusions::where('user_id',auth()->id())->orderBy('id', 'desc')->paginate(15);
         }
