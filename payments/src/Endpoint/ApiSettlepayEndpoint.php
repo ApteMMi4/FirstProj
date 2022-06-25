@@ -8,7 +8,7 @@ class ApiSettlepayEndpoint implements EndpointInterface
 {
     public function getUrl()
     {
-        return 'https://api.settlepay.net';
+        return 'https://api.api-pay.net';
     }
 
     public function getMethod()
