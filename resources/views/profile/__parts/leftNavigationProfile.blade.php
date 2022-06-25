@@ -12,13 +12,13 @@
                     <a href="{{ route('profile_conclusionsCreate') }}" class="submenu__link submenu__link--active">Создать</a>
                 </li>
                 <li class="submenu__item">
-                    <a href="{{ route('profile_conclusionsUser') }}" class="submenu__link ">История</a>
+                    <a href="{{ route('profile_conclusionsUser') }}" class="submenu__link submenu__link--active">История</a>
                 </li>
                 <li class="submenu__item">
-                    <a href="{{ route('profile_conclusionsPays') }}" class="submenu__link ">Массовые выплаты</a>
+                    <a href="{{ route('profile_conclusionsPays') }}" class="submenu__link submenu__link--active">Массовые выплаты</a>
                 </li>
                 <li class="submenu__item">
-                    <a href="{{ route('profile_sample') }}" class="submenu__link ">Шаблоны</a>
+                    <a href="{{ route('profile_sample') }}" class="submenu__link submenu__link--active">Шаблоны</a>
                 </li>
 {{--                <li class="submenu__item">--}}
 {{--                    <a href="{{ route('profile_discUser') }}" class="submenu__link @sublink5">Скидка</a>--}}
