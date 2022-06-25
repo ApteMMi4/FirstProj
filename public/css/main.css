@@ -693,7 +693,7 @@ body.scroll-hide {
 }
 
 .submenu__link--active::before {
-  background-color: #222332;
+  /*background-color: #222332;*/
 }
 
 .title {
