@@ -18,6 +18,9 @@ class AdminController extends Controller
 
         $conslusions = Conclusions::find($conslusions_id);
 
+        $transTotal = Transactions::where('shop_id',$conslusions->user_id)->sum('total');
+        dd($transTotal);
+//        if()
         $transMass = ['total'=>(floor($conslusions->sum)*-1), 'currency'=>'UAH', 'status'=>'success','shop_id'=>$conslusions->user_id];
         Transactions::create($transMass);
 
