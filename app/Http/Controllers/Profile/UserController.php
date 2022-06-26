@@ -328,7 +328,7 @@ class UserController extends CabinetController
 //        }
 
 
-        Conclusions::create($vivod);
+//        Conclusions::create($vivod);
 
 
         if($transTotal >= 0){
