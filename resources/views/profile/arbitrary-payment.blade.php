@@ -159,13 +159,13 @@
                     <div class="list__item arbitrary-payment__list4">
                         @if($iten->blocked == 1)
                             @if(!is_null($iten->transaction_id))
-                            <a href="/block/{{$iten->transaction_id}}" target="_blank"> Транзакция заблокирована</a>
+                            <a href="{{$iten->url}}" target="_blank"> Транзакция заблокирована</a>
                             @else
                                 <a href="#" target="_blank"> Не обработанная</a>
                             @endif
                         @else
                             @if($iten->status==1)
-                                <a href="/success/{{$iten->transaction_id}}" target="_blank"> Оплачен</a>
+                                <a href="{{$iten->url}}" target="_blank"> Оплачен</a>
                             @else
                             <a href="{{$iten->url}}" target="_blank"> Ссылка для оплаты</a>
                             @endif
