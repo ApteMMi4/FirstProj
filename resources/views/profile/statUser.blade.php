@@ -156,7 +156,7 @@
                             <img loading="lazy" src={{asset("img/turn-system__item--icon.png")}} alt="img">
                             <span>     {{$item->sum('total')}} {{$currency}} -{{$iten->sum}} </span>
                         </div>
-                    </div>
+                    </div>}
                     @endforeach
                     @endif
 
