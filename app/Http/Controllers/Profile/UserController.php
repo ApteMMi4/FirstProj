@@ -340,7 +340,7 @@ class UserController extends CabinetController
     public function statusTransactionUpdate(Request $request)
     {
         $transaction_id = $request->get('id');
-        $status = $request->get('stat');
+        $status = $request->get('status');
 
         $statusTrans= Transactions::find($transaction_id);
         $statusTrans->status = $status;
