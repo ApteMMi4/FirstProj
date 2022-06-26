@@ -175,7 +175,7 @@
                     <div class="select">
 
                         <div class="select__top">
-                            <span class="select__top-title">UAH({{$item->sum('total')}}) </span>
+                            <span class="select__top-title">UAH </span>
                         </div>
 
                         <div class="select__content">
