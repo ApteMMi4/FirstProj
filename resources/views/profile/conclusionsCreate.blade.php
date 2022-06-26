@@ -178,13 +178,15 @@
                             <span class="select__top-title">UAH </span>
                         </div>
 
-                        @foreach($trans as $currency=>$item)
+
                         <div class="select__content">
                             <div class="select__input">
+                                @foreach($trans as $currency=>$item)
                                 <input type="radio" name="valute" value="UAH" checked>
                                 <span class="select__item">UAH {{$item->sum('total')}}</span>
+                                @endforeach
                             </div>
-                            @endforeach
+
                             <div class="select__input">
                                 <input type="radio" name="valute" value="USD">
                                 <span class="select__item">USD</span>
