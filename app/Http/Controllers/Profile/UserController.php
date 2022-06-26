@@ -314,9 +314,7 @@ class UserController extends CabinetController
     }
     public function conclusionsCreate()
     {
-        $transactions = Transactions::where('shop_id', auth()->user()->id)->where('status', '=', 'success')->orderBy('id', 'desc')->get();
-
-        return view('profile.conclusionsCreate',['trans'=>$transactions->groupBy('currency')]);
+        return view('profile.conclusionsCreate');
     }
 
     public function conclusionsStore(Request $request)

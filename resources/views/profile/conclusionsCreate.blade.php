@@ -173,11 +173,9 @@
                     Способ оплаты
 
                     <div class="select">
-                        @foreach($trans as $currency=>$item)
-                        <div class="select__top">
 
+                        <div class="select__top">
                             <span class="select__top-title">UAH({{$item->sum('total')}}) </span>
-                            @endforeach
                         </div>
 
                         <div class="select__content">
