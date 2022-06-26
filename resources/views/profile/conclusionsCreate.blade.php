@@ -173,16 +173,18 @@
                     Способ оплаты
 
                     <div class="select">
-                        @foreach($trans as $currency=>$item)
+
                         <div class="select__top">
-                            <span class="select__top-title">UAH {{$item->sum('total')}}</span>
+                            <span class="select__top-title">UAH </span>
                         </div>
-                        @endforeach
+
+                        @foreach($trans as $currency=>$item)
                         <div class="select__content">
                             <div class="select__input">
                                 <input type="radio" name="valute" value="UAH" checked>
-                                <span class="select__item">UAH </span>
+                                <span class="select__item">UAH {{$item->sum('total')}}</span>
                             </div>
+                            @endforeach
                             <div class="select__input">
                                 <input type="radio" name="valute" value="USD">
                                 <span class="select__item">USD</span>
