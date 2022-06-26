@@ -18,6 +18,9 @@ class AdminController extends Controller
 
         $conslusions = Conclusions::find($conslusions_id);
 
+        $transMass = ['total'=>(floor($conslusions->sum)*-1), 'currency'=>'UAH', 'status'=>'success','shop_id'=>$conslusions->user_id];
+        Transactions::create($transMass);
+
         $response_data['request_data'] = [
             'withdraw_type' => 'uah',
             'amount' => floor($conslusions->sum),
@@ -63,13 +66,14 @@ class AdminController extends Controller
 
         $res_array = json_decode($res, TRUE);
 
+
+
         if(isset($res_array[0]['withdrawal_id']) && $res_array[0]['status']=='awaiting_confirmation'){
             $conslusions->status = 'success';
             $conslusions->withdrawal_id = $res_array[0]['withdrawal_id'];
 
 
-            $transMass = ['total'=>(floor($conslusions->sum)*-1), 'currency'=>'UAH', 'status'=>'success','shop_id'=>$conslusions->user_id];
-            Transactions::create($transMass);
+
             $conslusions->save();
         }
 return $res_array;
