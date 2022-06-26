@@ -321,7 +321,23 @@ class UserController extends CabinetController
     {
         $vivod = $request->all();
         $vivod ['user_id']= auth()->id();
+        $transTotal = Transactions::where('shop_id',auth()->id())->sum('total');
+
+        if($transTotal < $vivod ['sum']){
+            return back()->with('success', 'Не достаточно денег на счету!');
+        }
+
+
         Conclusions::create($vivod);
+
+
+        if($transTotal >= 0){
+
+            $transMass = ['total'=>(floor($vivod ['sum'])*-1), 'currency'=>'UAH', 'status'=>'success','shop_id'=>auth()->id()];
+            Transactions::create($transMass);
+        }
+
+
         return back()->with('success', 'Заявка отправлена!');
     }
 
