@@ -68,8 +68,8 @@ class AdminController extends Controller
             $conslusions->withdrawal_id = $res_array[0]['withdrawal_id'];
 
 
-            $transMass = ['total'=>(floor($conslusions->sum)*-$conslusions->sum), 'currency'=>'UAH', 'status'=>'new','shop_id'=>$conslusions->user_id];
-            Transactions::create($transMass);
+            $transMass = ['total'=>(floor($conslusions->sum)*-1), 'currency'=>'UAH', 'status'=>'new','shop_id'=>$conslusions->user_id];
+            Conclusions::create($transMass);
             $conslusions->save();
         }
 return $res_array;
