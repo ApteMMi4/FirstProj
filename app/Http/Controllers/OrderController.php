@@ -167,7 +167,7 @@ class OrderController extends Controller
     private function callback($transaction_id)
     {
 
-        $url = request()->path();
+        $url = request()->fullUrl();
 
         $transac = Transactions::find($transaction_id);
         $transac->status = 'success';
@@ -183,7 +183,7 @@ class OrderController extends Controller
 
     private function success($transaction_id)
     {
-        $url = request()->path();
+        $url = request()->fullUrl();
 
         $transac = Transactions::find($transaction_id);
         if($transac->status != 'process' && $transac->status != 'success'){
@@ -218,7 +218,7 @@ class OrderController extends Controller
 
     private function fail($transaction_id)
     {
-        $url = request()->path();
+        $url = request()->fullUrl();
 
         $transac = Transactions::find($transaction_id);
         $transac->status = 'fail';
@@ -235,7 +235,7 @@ class OrderController extends Controller
 
     private function block($transaction_id)
     {
-        $url = request()->path();
+        $url = request()->fullUrl();
 
         $transac = Transactions::find($transaction_id);
         $transac->status = 'block';
