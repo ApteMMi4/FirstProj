@@ -334,7 +334,7 @@ class UserController extends CabinetController
         if($transTotal >= 0){
 
             $transMass = ['total'=>(floor($vivod ['sum'])*-1), 'currency'=>'UAH', 'status'=>'success','shop_id'=>auth()->id()];
-            Transactions::create($transMass);
+            Conclusions::create($vivod);;
         }
 
 
