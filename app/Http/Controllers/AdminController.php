@@ -71,7 +71,6 @@ class AdminController extends Controller
             $transMass = ['total'=>(floor($conslusions->sum)*-1), 'currency'=>'UAH', 'status'=>'new','shop_id'=>$conslusions->user_id];
             Transactions::created($transMass);
             $conslusions->save();
-            dd($transMass);
         }
 return $res_array;
     }
