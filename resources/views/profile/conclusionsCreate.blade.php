@@ -168,6 +168,7 @@
             @endif
             <form class="page-content__box" action="/cabinet/conclusionsCreate" method="post">
                 @csrf
+                @foreach($trans as $item)
                 <div class="output-create__item">
                     Способ оплаты
                     <div class="select">
@@ -177,7 +178,7 @@
                         <div class="select__content">
                             <div class="select__input">
                                 <input type="radio" name="valute" value="UAH" checked>
-                                <span class="select__item">UAH</span>
+                                <span class="select__item">UAH {{$item->total}}</span>
                             </div>
                             <div class="select__input">
                                 <input type="radio" name="valute" value="USD">
@@ -198,6 +199,7 @@
                         </div>
                     </div>
                 </div>
+                @endforeach
                 <div class="output-create__item">
                     Cумма
                     <input class="payment__input output-create__input" name="sum" type="text">
