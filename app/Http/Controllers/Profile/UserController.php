@@ -283,8 +283,8 @@ class UserController extends CabinetController
     public function statUser()
     {
         $transactions = Transactions::where('shop_id', auth()->user()->id)->where('status', '=', 'success')->orderBy('id', 'desc')->get();
-$cons = Conclusions::find('user_id');
-        return view('profile.statUser', ['trans'=>$transactions->groupBy('currency'), 'cons'=>$cons]);
+
+        return view('profile.statUser', ['trans'=>$transactions->groupBy('currency')]);
     }
     public function userTransaction(Request $request)
     {
