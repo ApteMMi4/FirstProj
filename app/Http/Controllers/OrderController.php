@@ -167,12 +167,15 @@ class OrderController extends Controller
     private function callback($transaction_id)
     {
 
+        $url = request()->path();
+
         $transac = Transactions::find($transaction_id);
         $transac->status = 'success';
         $transac->save();
 
         $payInfo = PaymentForm::where('user_id', $transac->shop_id)->where('id', $transac->url_id)->first();
         $payInfo->status = 1;
+        $payInfo->url = $url;
         $payInfo->save();
 
             return view('order.callback', compact('transaction_id'));
@@ -180,6 +183,8 @@ class OrderController extends Controller
 
     private function success($transaction_id)
     {
+        $url = request()->path();
+
         $transac = Transactions::find($transaction_id);
         if($transac->status != 'process' && $transac->status != 'success'){
 
@@ -205,6 +210,7 @@ class OrderController extends Controller
 
         $payInfo = PaymentForm::where('user_id', $transac->shop_id)->where('id', $transac->url_id)->first();
         $payInfo->status = 1;
+        $payInfo->url = $url;
         $payInfo->save();
 
         return view('order.success', compact('transac', 'payInfo'));
@@ -212,6 +218,8 @@ class OrderController extends Controller
 
     private function fail($transaction_id)
     {
+        $url = request()->path();
+
         $transac = Transactions::find($transaction_id);
         $transac->status = 'fail';
         $transac->save();
@@ -219,6 +227,7 @@ class OrderController extends Controller
         $payInfo = PaymentForm::where('user_id', $transac->shop_id)->where('id', $transac->url_id)->first();
         $payInfo->status = 0;
         $payInfo->blocked = 1;
+        $payInfo->url = $url;
         $payInfo->save();
 
         return view('order.fail', compact('transac', 'payInfo'));
@@ -226,6 +235,8 @@ class OrderController extends Controller
 
     private function block($transaction_id)
     {
+        $url = request()->path();
+
         $transac = Transactions::find($transaction_id);
         $transac->status = 'block';
         $transac->save();
@@ -233,6 +244,7 @@ class OrderController extends Controller
         $payInfo = PaymentForm::where('user_id', $transac->shop_id)->where('id', $transac->url_id)->first();
         $payInfo->status = 0;
         $payInfo->blocked = 1;
+        $payInfo->url = $url;
         $payInfo->save();
 
         return view('order.block', compact('transac', 'payInfo'));
