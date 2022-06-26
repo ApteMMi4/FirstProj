@@ -149,7 +149,7 @@
                         </div>
                     @else
 
-                    @foreach($trans as $currency=>$item)
+                    @foreach($trans as $currency=>$item){
                         @foreach($cons as $iten)
                     <div class="turn-system__wrap">
                         <div class="turn-system__item">
@@ -157,7 +157,6 @@
                             <span>     {{$item->sum('total')}} {{$currency}} -{{$iten->sum}} </span>
                         </div>
                     </div>
-                            @endforeach
                     @endforeach
                     @endif
 
