@@ -171,11 +171,13 @@
 
                 <div class="output-create__item">
                     Способ оплаты
-                    @foreach($trans as $item)
+
                     <div class="select">
+                        @foreach($trans as $item)
                         <div class="select__top">
                             <span class="select__top-title">UAH {{$item->total}}</span>
                         </div>
+                        @endforeach
                         <div class="select__content">
                             <div class="select__input">
                                 <input type="radio" name="valute" value="UAH" checked>
@@ -197,7 +199,6 @@
                                 <input type="radio" name="valute" value="BTC">
                                 <span class="select__item">ETH</span>
                             </div>
-                            @endforeach
                         </div>
                     </div>
                 </div>
