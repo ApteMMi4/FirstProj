@@ -149,14 +149,13 @@
                         </div>
                     @else
 
-                    @foreach($trans as $currency=>$item){
-                        @foreach($cons as $iten)
+                    @foreach($trans as $currency=>$item)
                     <div class="turn-system__wrap">
                         <div class="turn-system__item">
                             <img loading="lazy" src={{asset("img/turn-system__item--icon.png")}} alt="img">
                             <span>     {{$item->sum('total')}} {{$currency}} -{{$iten->sum}} </span>
                         </div>
-                    </div>}
+                    </div>
                     @endforeach
                     @endif
 
