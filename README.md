@@ -13,3 +13,4 @@ Two-factor authentication (2FA) strengthens access security by requiring two met
 The traditional password is already one factor of authentication which is something only the user should have. Some extra form of security that a user should also have includes biometrics(fingerprint), voice pattern recognition, or iris scan which are quite expensive but awesome. 
 
 The second factor should be something that users don't readily have or aren't constant. One form of the second factor is One-Time Passwords(OTPs) which will be our focus here.....**[Read More](https://dev.to/roxie/how-to-add-google-s-two-factor-authentication-to-a-laravel-8-application-4jjp)**
+# ProjectFirst
