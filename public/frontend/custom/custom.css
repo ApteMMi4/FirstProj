@@ -1,0 +1,242 @@
+.paycode_data
+{
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+.paycode_data>div
+{
+  margin-bottom: 8px;
+}
+.paycode_data_result
+{
+  font-size: 15px;
+  font-weight: 600;
+  font-style: normal;
+}
+.paycode_data_paycode_id,
+.paycode_data_paycode_amount,
+.paycode_data_created_at
+{
+  font-size: 15px;
+  font-weight: 400;
+  font-style: normal;
+}
+.error
+{
+  border: 1px solid red;
+}
+.pay-code__table-outer .admin-table__el.max-width-100,
+.max-width-100
+{
+  min-width: 100px !important;
+  width: 100px !important;
+
+}
+.pay-code__table-outer .admin-table__el.max-width-300,
+.max-width-300
+{
+  min-width: 300px !important;
+  width: 300px !important;
+}
+.minus-text
+{
+  color: #f44336 !important;
+  font-size: 12px !important;
+  font-weight: 600 !important;
+}
+.plus-text
+{
+  color: #8bc34a !important;
+  font-size: 12px !important;
+  font-weight: 600 !important;
+}
+.padding-btn
+{
+  box-sizing: border-box;
+  padding: 8px 16px;
+}
+.btn-pad-mini
+{
+  box-sizing: border-box;
+  padding: 4px 8px;
+  border: 0;
+  height: 32px;
+  margin-top: 22px;
+  display: inline-block;
+}
+.filter-form
+{
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-items: flex-end;
+}
+.filter-form-item
+{
+  margin-right: 16px;
+}
+.filter-form-item input[type="text"],
+.filter-form-item select
+{
+  height: 32px;
+  min-width: 200px;
+  background: #ffffff;
+  border: 1px solid #f2f2f2;
+  border-radius: 4px;
+  box-sizing: border-box;
+  padding: 4px 8px;
+}
+.filter-or
+{
+  margin-right: 16px;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+
+  font-size: 16px;
+  font-weight: 700;
+}
+.paycode_copy
+{
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+}
+
+@-webkit-keyframes clicked {
+  0%, 20%, 50%, 80%, 100% {-webkit-transform: translateY(0);}
+  40% {-webkit-transform: translateY(-5px);}
+  60% {-webkit-transform: translateY(-10px);}
+}
+
+@keyframes clicked {
+  0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
+  40% {transform: translateY(-10px);}
+  60% {transform: translateY(-5px);}
+}
+
+.clicked {
+  -webkit-animation-name: clicked;
+  animation-name: clicked;
+}
+.custom-input-group
+{
+  margin-bottom: 1rem;
+}
+.error-notice
+{
+  width: 100%;
+
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: center;
+
+  box-sizing: border-box;
+  padding: 8px 16px;
+
+  margin-bottom: 1rem;
+
+  background: #f44336;
+  border-radius: 8px;
+  font-size: 12px;
+}
+.email_verify_success_notice
+{
+  width: 100%;
+
+
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+
+  box-sizing: border-box;
+  padding: 8px 16px;
+
+  margin-bottom: 1rem;
+
+
+  border-radius: 8px;
+  font-size: 12px;
+}
+.email_verify_success_notice p
+{
+  width: 100%;
+  max-width: 640px;
+
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+
+  box-sizing: border-box;
+  padding: 8px 16px;
+
+  margin-bottom: 1rem;
+
+  background: #8bc34a;
+  border-radius: 8px;
+  font-size: 14px;
+}
+.verify_docs_status
+{
+  color: #222;
+}
+.verify_docs_status_0
+{
+  color: #f44336;
+}
+.verify_docs_status_1
+{
+  color: #2196f3;
+}
+.verify_docs_status_2
+{
+  color: #8bc34a;
+}
+.double_cols
+{
+  width: 100%;
+
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+.double_cols>label,
+.double_cols>.doc_type
+{
+  width: 48% !important;
+  margin: 0.5rem 1% 0 1%;
+}
+.double_cols>.doc_type .select
+{
+  margin-top: 10px;
+}
+.double_cols>.doc_type .select,
+.double_cols>.doc_type .select__top
+{
+  height: 40px;
+}
+.double_cols .arbitrary-payment__select
+{
+  width: 100%;
+}
+.full--btn
+{
+  width: 100%;
+}

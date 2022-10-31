@@ -1,5 +1,5 @@
 <div class="popup popup--authorization">
-    <form class="popup__inner" id="auth-form" data-url="{{ route('profile_index') }}" method="POST" action="{{ route('login') }}">
+    <form class="popup__inner" id="auth-form" data-url="{{ route('profile_dashboard') }}" method="POST" action="{{ route('login') }}">
         @csrf
         <span class="popup__close popup__close--authorization"></span>
         <h2 class="popup__title title-main fz27">Авторизация</h2>

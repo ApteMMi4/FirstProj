@@ -10,13 +10,16 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
+    <script src="{{asset('frontend/js/vendor.js')}}"></script>
+    <script src="{{asset('frontend/js/main.js')}}"></script>
+    <script src="{{asset('frontend/custom/custom.js')}}?ver=10"></script>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
     <!-- Styles -->
+
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/vendor.css') }}" rel="stylesheet">
     <link href="{{ asset('css/main.css') }}" rel="stylesheet">
@@ -39,8 +42,7 @@
         </div>
         <div class="header-admin__static">
             <div class="header-title">
-                <span>Партнерка</span>
-                <span></span>
+                <span>Транзакции</span>
                 <span></span>
             </div>
             <img loading="lazy" src="{{ asset('img/calendar.png') }}" alt="img">
@@ -56,7 +58,7 @@
                 </div>
             </button>
             <div class="profile__content">
-                <a href="{{ route('profile_me') }}" class="profile__btn profile-hover">
+                <a href="{{ route('profile_adminMe') }}" class="profile__btn profile-hover">
                     <img class="profile__icon3" loading="lazy" src="{{ asset('img/profile.png') }}" alt="">
                     <span class="profile__btn-text profile__btn-text--one">Профиль</span>
                 </a>
@@ -77,7 +79,10 @@
             </div>
         </div>
     </header>
-@section('page-body')
+
+
+
+
     @if (Auth::user()->role == 'admin')
     <div class="page-content">
         <section class="currencies ref-prog-sec">
@@ -153,38 +158,21 @@
         </section>
     </div>
     @endif
-@endsection
 
-    <nav class="nav">
-        <ul class="nav__list">
-            @if(auth()->user()->isUser())
-                @include('profile.__parts.leftNavigationProfile')
-            @endif
+
+    <nav class="adm">
+        <ul class="adm__list">
 
 
             @if(auth()->user()->isAdmin())
                 @include('profile.__parts.leftNavigation')
             @endif
-
-            {{--            @if (Route::is('profile_me'))--}}
-            {{--                @include('profile.__parts.leftNavigationProfile')--}}
-
-            {{--            @else--}}
-            {{--                @include('profile.__parts.leftNavigation')--}}
-            {{--            @endif--}}
         </ul>
     </nav>
 
 
-    <div class="page-body">
 
-        @yield('page-body')
-
-    </div>
 </div>
-<script src="{{ asset('js/vendor.js') }}"></script>
-<script src="{{ asset('js/main.js') }}"></script>
-
 </body>
 
 

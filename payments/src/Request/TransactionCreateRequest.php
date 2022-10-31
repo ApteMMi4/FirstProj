@@ -37,6 +37,7 @@ class TransactionCreateRequest extends ApiRequest
         $paymentSlug = $res->get('payment');
 
         $point = config('payments.'.$paymentSlug.'.point');
+
         $mass1 = [$res->get('transaction_id'),request()->getClientIp() , 'callback'];
         $mass2 = [$res->get('transaction_id'),request()->getClientIp() , 'success'];
         $mass3 = [$res->get('transaction_id'),request()->getClientIp() , 'fail'];
@@ -45,9 +46,9 @@ class TransactionCreateRequest extends ApiRequest
         $hash2 = base64_encode(implode(',' , $mass2));
         $hash3 = base64_encode(implode(',' , $mass3));
 
-        $point ['callback_url'] = str_replace('{transaction_hash}', $hash1, $point ['callback_url']);
-        $point ['success_url'] = str_replace('{transaction_hash}', $hash2, $point ['success_url']);
-        $point ['fail_url'] = str_replace('{transaction_hash}', $hash3, $point ['fail_url']);
+        $point ['callback_url'] = env('APP_URL').'/returnedPass/' . $hash1;
+        $point ['success_url'] = env('APP_URL').'/turnedGreat/' . $hash2;
+        $point ['fail_url'] = env('APP_URL').'/notPass/' . $hash3;
 
 
         return array(

@@ -48,12 +48,12 @@ return [
     /*
      * Forbid user to reuse One Time Passwords.
      */
-    'forbid_old_passwords' => false,
+    'forbid_old_passwords' => true,
 
-    /*
-     * User's table column for google2fa secret.
-     */
-    'otp_secret_column' => 'google2fa_secret',
+//    /*
+//     * User's table column for google2fa secret.
+//     */
+//    'otp_secret_column' => 'google2fa_secret',
 
     /*
      * One Time Password View.

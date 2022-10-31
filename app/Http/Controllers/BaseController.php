@@ -13,7 +13,9 @@ class BaseController extends Controller
      */
     public function __construct()
     {
-        $this->middleware(['auth','2fa']);
+//        $this->middleware(['auth','2fa']);
+        return view('index');
+
     }
 
     /**
@@ -55,6 +57,7 @@ class BaseController extends Controller
     {
         return view('contact');
     }
+
 
 
 }

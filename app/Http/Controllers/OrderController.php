@@ -49,9 +49,9 @@ class OrderController extends Controller
             $point = config('payments.'.$payment.'.point');
             $mass3 = [$paymForm->transaction_id,request()->getClientIp() , 'fail'];
             $hash3 = base64_encode(implode(',' , $mass3));
-            $failUrl  = str_replace('{transaction_hash}', $hash3, $point ['fail_url']);
+            $failUrl  = env('APP_URL').'/notPass/' . $hash3;
 
-            return redirect(route('universal' , ['transaction_hash' => $hash3]), 301);
+            return redirect(route('order_fail' , ['transaction_hash' => $hash3]), 301);
         }
         $transaction = Transactions::find($paymForm->transaction_id);
 
@@ -81,12 +81,17 @@ class OrderController extends Controller
         $createAt = $paymForm->created_at->addMinutes(20)->timestamp;
         $jsCreateAtt = $createAt*1000;
 
+         Session::put('orderTime', 'Artem Privet');
+
+
 //        $jsNow = $now*1000.0000009394591;
 
 
-        if ($now < $createAt && $transaction->status == 'process' && !is_null($transaction->pay_result)){
+
+        if (!is_null($transaction->pay_result)){
 
             $payResult = json_decode($transaction->pay_result, true);
+
         }
 
         else {
@@ -121,7 +126,8 @@ class OrderController extends Controller
 
 
             if ($payResult['error']['code'] > 0) {
-                dd($payResult);
+                dump($payResult);
+                abort(401);
             }
 
         }
@@ -134,73 +140,105 @@ class OrderController extends Controller
         $point = config('payments.'.$payment.'.point');
         $mass3 = [$transaction_id,request()->getClientIp() , 'fail'];
         $hash3 = base64_encode(implode(',' , $mass3));
-        $failUrl  = str_replace('{transaction_hash}', $hash3, $point ['fail_url']);
+        $failUrl  = env('APP_URL').'/notPass/' . $hash3;
 
-        if ($now > $createAt){
+        if ($now > $createAt && $transaction->status == 'process'){
 
             $transaction->status='block';
             $transaction->save();
 
-            return redirect(route('universal' , ['transaction_hash' => $hash3]), 301);
+            return redirect(route('order_fail' , ['transaction_hash' => $hash3]), 301);
         }
 
 
-        $newSession = Session::get('transaction_id_'. $shop_id.'_'.$paymForm->id);
+//        $newSession = Session::get('orderTime');
+
 
         return view('order.order', compact('payResult', 'transaction_id', 'price', 'currency', 'shop_id', 'payment', 'total', 'tot2','now', 'createAt', 'createAtt', 'jsCreateAtt', 'failUrl'));
 
     }
 
-    public function universal($hash)
-    {
+//    public function universal($hash)
+//    {
+//
+//        $str = base64_decode($hash);
+//        $arr = explode(',', $str);
+//
+//        $transaction_id = $arr[0];
+//        $functions = end($arr);
+//
+//      return $this->{$functions}($transaction_id);
+//
+//    }
 
+
+
+    public function callback($hash)
+    {
         $str = base64_decode($hash);
         $arr = explode(',', $str);
 
         $transaction_id = $arr[0];
         $functions = end($arr);
 
-      return $this->{$functions}($transaction_id);
-
-    }
-
-    private function callback($transaction_id)
-    {
-
         $url = request()->fullUrl();
 
         $transac = Transactions::find($transaction_id);
-        $transac->status = 'success';
-        $transac->save();
-
         $payInfo = PaymentForm::where('user_id', $transac->shop_id)->where('id', $transac->url_id)->first();
-        $payInfo->status = 1;
-        $payInfo->url = $url;
-        $payInfo->save();
 
-            return view('order.callback', compact('transaction_id'));
+        if($transac->status == 'process' ){
+
+            $transac->status = 'fail';
+            $transac->save();
+
+
+            $payInfo->status = 0;
+            $payInfo->blocked = 1;
+            $payInfo->url = $url;
+            $payInfo->save();
+
+            return view('order.fail', compact('transac', 'payInfo'));
+
+        }
+
+        if ($transac->status == 'success')
+            return view('order.success', compact('transac', 'payInfo'));
     }
 
-    private function success($transaction_id)
+    public function success($hash)
     {
+        $str = base64_decode($hash);
+        $arr = explode(',', $str);
+        $transaction_id = $arr[0];
+
         $url = request()->fullUrl();
 
         $transac = Transactions::find($transaction_id);
         if($transac->status != 'process' && $transac->status != 'success'){
 
-           return redirect(route('order_block', $transaction_id));
+            $mass3 = [$transac->id,request()->getClientIp() , 'fail'];
+            $hash3 = base64_encode(implode(',' , $mass3));
+
+           return redirect(route('order_fail', ['transaction_hash' => $hash3]), 301);
         }
         if ($transac->status == 'process')
         {
             request()->request->add(['payment'=>'settlepay']);
 
             $dto = new Dto([
-                'id' => $transac->id,
+                'external_transaction_id' => $transac->id,
             ]);
             $payResult = Payments::transactionFind($dto);
 
             if (isset($payResult ['error']) && isset($payResult ['error']['code']) && $payResult ['error']['code']>0){
-                return redirect(route('order_fail', $transaction_id));
+
+                $point = config('payments.settlepay.point');
+                $mass3 = [$transac->id,request()->getClientIp() , 'fail'];
+                $hash3 = base64_encode(implode(',' , $mass3));
+                $failUrl  = str_replace('{transaction_hash}', $hash3, $point ['fail_url']);
+
+                return redirect(route('order_fail' , ['transaction_hash' => $hash3]), 301);
+
             }
         }
 
@@ -209,6 +247,7 @@ class OrderController extends Controller
         $transac->save();
 
         $payInfo = PaymentForm::where('user_id', $transac->shop_id)->where('id', $transac->url_id)->first();
+        $payInfo->status = 0;
         $payInfo->status = 1;
         $payInfo->url = $url;
         $payInfo->save();
@@ -216,8 +255,13 @@ class OrderController extends Controller
         return view('order.success', compact('transac', 'payInfo'));
     }
 
-    private function fail($transaction_id)
+    public function fail($hash)
     {
+
+        $str = base64_decode($hash);
+        $arr = explode(',', $str);
+        $transaction_id = $arr[0];
+
         $url = request()->fullUrl();
 
         $transac = Transactions::find($transaction_id);
@@ -233,8 +277,12 @@ class OrderController extends Controller
         return view('order.fail', compact('transac', 'payInfo'));
     }
 
-    private function block($transaction_id)
+    public function block($hash)
     {
+        $str = base64_decode($hash);
+        $arr = explode(',', $str);
+        $transaction_id = $arr[0];
+
         $url = request()->fullUrl();
 
         $transac = Transactions::find($transaction_id);

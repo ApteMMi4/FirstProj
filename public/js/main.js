@@ -1,5 +1,119 @@
 "use strict";
 
+if (document.querySelector('.accounts')) {
+    const accountsBtn = document.querySelectorAll(".accounts__tab-btn");
+    const accountsItems = document.querySelectorAll(".accounts__tab-content");
+
+    accountsBtn.forEach(onTabClick);
+
+    function onTabClick(item) {
+        item.addEventListener("click", function () {
+            let currentBtn = item;
+            let tabId = currentBtn.getAttribute("data-acc-tab");
+            let currentTab = document.querySelector(tabId);
+
+            if (!currentBtn.classList.contains('active')) {
+                accountsBtn.forEach(function (item) {
+                    item.classList.remove('active');
+                });
+
+                accountsItems.forEach(function (item) {
+                    item.classList.remove('active');
+                });
+
+                currentBtn.classList.add('active');
+                currentTab.classList.add('active');
+            }
+        });
+    }
+
+    document.querySelector('.accounts__tab-btn').click();
+}
+
+if (document.querySelector('.pay-cur')) {
+    const payListItems = document.querySelectorAll('.pay-cur-list-item');
+    const payCur = document.querySelectorAll('.pay-cur-span');
+
+    payListItems.forEach(item => {
+        item.addEventListener('click', () => {
+            payCur.forEach(pcItem => {
+                if (!pcItem.classList.contains('no-change') && !pcItem.classList.contains('lang')) {
+                    pcItem.textContent = item.textContent;
+                }
+            });
+        });
+    });
+
+    const langItems = document.querySelectorAll('.lang-item');
+    const langCur = document.querySelectorAll('.lang');
+
+    langItems.forEach(item => {
+        item.addEventListener('click', () => {
+            langCur.forEach(langItem => {
+                langItem.textContent = item.textContent;
+            });
+            langItems.forEach(lItem => {
+                lItem.classList.remove('active');
+            })
+            item.classList.add('active');
+        });
+    });
+}
+
+if (document.querySelector('.nav')) {
+    $(function () {
+        $('.nav a').each(function () {
+            var location = window.location.href;
+            var link = this.href;
+            var linnk = this;
+            if (location == link) {
+                $(this).addClass('nav__link--active');
+            }
+
+        });
+    });
+}
+
+if (document.querySelector('.top-up-tr')) {
+    const topUpTrs = document.querySelectorAll('.top-up-tr'),
+        topUpTrModal = document.querySelector('.top-up-tr-modal'),
+        topUpTrClose = topUpTrModal.querySelector('.popup__close');
+
+    topUpTrs.forEach(topUp => {
+        topUp.addEventListener('click', () => {
+            topUpTrModal.classList.add('active');
+        });
+    });
+
+    topUpTrClose.addEventListener('click', () => {
+        topUpTrModal.classList.remove('active');
+    });
+
+    const topUpCrs = document.querySelectorAll('.top-up-cr'),
+        topUpCrModal = document.querySelector('.top-up-cr-modal'),
+        topUpCrClose = topUpCrModal.querySelector('.popup__close');
+
+    topUpCrs.forEach(topUp => {
+        topUp.addEventListener('click', () => {
+            console.log('active')
+            topUpCrModal.classList.add('active');
+        });
+    });
+
+    topUpCrClose.addEventListener('click', () => {
+        topUpCrModal.classList.remove('active');
+    });
+}
+
+$('.switch-btn').click(function () {
+    $(this).toggleClass('switch-on');
+    if ($(this).hasClass('switch-on')) {
+        $(this).trigger('on.switch');
+    } else {
+        $(this).trigger('off.switch');
+    }
+});
+
 function slideUp(e) {
     e.slideUp(300)
 }
@@ -9,14 +123,16 @@ function fadeOut(e) {
 }
 
 function closedClick(e, t, o) {
-    var n = $(e), a = $(t);
+    var n = $(e),
+        a = $(t);
     $(document).mouseup((function (e) {
         n.is(e.currentTarget) || 0 !== n.has(e.target).length || (a.removeClass("active"), o(a))
     }))
 }
 
 function select() {
-    var e = document.querySelectorAll(".select__top"), t = document.querySelectorAll(".select__content"),
+    var e = document.querySelectorAll(".select__top"),
+        t = document.querySelectorAll(".select__content"),
         o = $(".select__input");
     document.addEventListener("click", (function (n) {
         var a = n.target;
@@ -25,7 +141,9 @@ function select() {
         })) : e.forEach((function (e, o) {
             e.classList.remove("active"), $(t[o]).slideUp(300)
         })), o.on("click", (function () {
-            var e = $(this).find("span").text(), t = $(this).find("img").attr("src"), o = $(this).parent(),
+            var e = $(this).find("span").text(),
+                t = $(this).find("img").attr("src"),
+                o = $(this).parent(),
                 n = $(this).parent().prev();
             n.find(".select__top-title").text(e), n.find(".select__top-icon").attr("src", t), o.slideUp(300)
         }))
@@ -37,9 +155,9 @@ $(".control__title").on("click", (function () {
 })), closedClick(".header-profile", ".profile__content", slideUp), closedClick(".sample-popup__inner", ".sample-popup", fadeOut), closedClick(".popup", ".popup", fadeOut), closedClick(".modal-add", ".modal-bg", fadeOut),
     $(".custum-check__input").on("click", (function () {
         $(this).toggleClass("active")
-        if($(".custum-check__input").hasClass('active')){
+        if ($(".custum-check__input").hasClass('active')) {
             $(".custum-check__input").find('.status_checked').val(1);
-        }else{
+        } else {
             $(".custum-check__input").find('.status_checked').val(0);
         }
 
@@ -49,9 +167,9 @@ $(".control__title").on("click", (function () {
     $(".add-template, .applic-modal").fadeOut(400), $(".overley").fadeOut(400)
 })), $(".edit, .edit-show").on("click", (function () {
     var id = $(this).attr('id');
-    if(id){
-        $(".edit-user[id='"+id+"']").fadeIn(400), $(".overley").fadeIn(400)
-    }else{
+    if (id) {
+        $(".edit-user[id='" + id + "']").fadeIn(400), $(".overley").fadeIn(400)
+    } else {
         $(".edit-user").fadeIn(400), $(".overley").fadeIn(400)
     }
 

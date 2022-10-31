@@ -1,5 +1,18 @@
-@extends('layouts.profile')
-@section('page-body')
+
+<!DOCTYPE html>
+
+
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="{{asset('img/favicon.ico')}}" type="image/x-icon">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="theme-color" content="#111111">
+    <title>Admin</title>
+    <link rel="stylesheet" href="/css/vendor.css">
+    <link rel="stylesheet" href="/css/main.css">
+</head>
 
 <body>
 <div class="page">
@@ -7,13 +20,13 @@
         <h2 class="popup__title title-main fz27">Изменить пароль</h2>
         <div class="popup__wrapper">
             <span>Введите новый пароль!</span>
-            <img class="popup__img" src={{asset("img/lock.png")}} alt="img">
+            <img class="popup__img" src="{{asset('img/lock.png')}}" alt="img">
             <input class="popup__input popup__input--password payment__input" type="text">
 
         </div>
         <div class="popup__wrapper">
-            <span>Введите новый пароль повторно</span>
-            <img class="popup__img" src={{asset("img/lock.png")}} alt="img">
+            <span>Введите новый пароль повторно!</span>
+            <img class="popup__img" src="{{asset('img/lock.png')}}" alt="img">
             <input class="popup__input popup__input--password payment__input" type="text">
 
         </div>
@@ -44,8 +57,14 @@
         })();
     </script>
 </div>
-<script src="js/vendor.js"></script>
-<script src="js/main.js"></script>
+<div class="page-body">
+
+    @yield('page-body')
+
+</div>
+<script src="/js/vendor.js"></script>
+<script src="/js/main.js"></script>
 </body>
 
-@endsection
+
+</div>

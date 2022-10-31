@@ -39,19 +39,56 @@
             </div>
         </div>
         <div class="header-admin__static">
+            <div class="header-title">
+                <span>Главная</span>
+                <span></span>
+            </div>
         </div>
-        <div class="header-profile" >
-            <button class="profile-main__btn profile-hover">
-                <div class="profile__inner">
-                    <img class="profile__icon1" loading="lazy" src="{{ asset('img/avatar.svg') }}" alt="">
-                    <span class="profile__text">{{ Auth::user()->name }}</span>
-                    <img class="profile__icon2" loading="lazy" src="{{ asset('img/settings.png') }}" alt="">
+        <div class="header-profile">
+            <div class="hero__pay-cur-outer pay-cur-outer">
+                <div class="pay-cur">
+                    <img loading="lazy" src={{asset("img/lang.svg")}} alt="img">
+                    <span class="pay-cur-span lang">RU</span>
+                    <img loading="lazy" src={{asset("img/arrow-down.svg")}} alt="img">
                 </div>
-            </button>
-            <div class="profile__content profile-hov-btn">
+                <ul class="pay-cur-list lang-list">
+                    <li class="lang-item">
+                        UA
+                    </li>
+                    <li class="lang-item">
+                        EN
+                    </li>
+
+                </ul>
+            </div>
+        <div class="header-admin__static">
+        </div>
+            <div class="header-profile" >
+                <button class="profile-main__btn profile-hover">
+                    <div class="profile__inner">
+                        <img class="profile__icon1" loading="lazy" src={{asset("img/avatar.svg")}} alt="">
+                        <span class="profile__text">{{ Auth::user()->name }}</span>
+                        <img class="profile__icon2" loading="lazy" src={{asset("img/settings.png")}} alt="">
+                    </div>
+                </button>
+            </div>
+
+            <div class="profile__content">
                 <a href="{{ route('profile_me') }}" class="profile__btn profile-hover">
-                    <img class="profile__icon3" loading="lazy" src="{{ asset('img/profile.png') }}" alt="">
+                    <img class="profile__icon3" loading="lazy" src={{asset("img/profile.png")}} alt="">
                     <span class="profile__btn-text profile__btn-text--one">Профиль</span>
+                </a>
+                <a href="pc-alert" class="profile__btn profile-hover">
+                    <img class="profile__icon3" loading="lazy" src={{asset("img/alert.png")}} alt="">
+                    <span class="profile__btn-text">Оповещения</span>
+                </a>
+                <a href="pc-protect" class="profile__btn profile-hover">
+                    <img class="profile__icon3" loading="lazy" src={{asset("img/protect.png")}} alt="">
+                    <span class="profile__btn-text">Безопасность</span>
+                </a>
+                <a href="pc-api" class="profile__btn profile-hover">
+                    <img class="profile__icon3" loading="lazy" src={{asset("img/api.png")}} alt="">
+                    <span class="profile__btn-text">API ключи</span>
                 </a>
                 <a href="{{ route('profile_changePass') }}" class="profile__btn profile-hover">
                     <img class="profile__icon3" loading="lazy" src={{asset("img/password.png")}} alt="">

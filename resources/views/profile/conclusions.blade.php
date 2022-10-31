@@ -1,11 +1,8 @@
-
 <!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-     <title>История Вывода</title>
-
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -14,15 +11,21 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
+    <script src="{{asset('frontend/js/vendor.js')}}"></script>
+    <script src="{{asset('frontend/js/main.js')}}"></script>
+    <script src="{{asset('frontend/custom/custom.js')}}?ver=10"></script>
+
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
     <!-- Styles -->
+
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/vendor.css') }}" rel="stylesheet">
     <link href="{{ asset('css/main.css') }}" rel="stylesheet">
+
 
 </head>
 
@@ -42,8 +45,7 @@
         </div>
         <div class="header-admin__static">
             <div class="header-title">
-                <span>Вывод</span>
-                <span>История</span>
+                <span>Транзакции</span>
                 <span></span>
             </div>
             <img loading="lazy" src="{{ asset('img/calendar.png') }}" alt="img">
@@ -59,7 +61,7 @@
                 </div>
             </button>
             <div class="profile__content">
-                <a href="{{ route('profile_me') }}" class="profile__btn profile-hover">
+                <a href="{{ route('profile_adminMe') }}" class="profile__btn profile-hover">
                     <img class="profile__icon3" loading="lazy" src="{{ asset('img/profile.png') }}" alt="">
                     <span class="profile__btn-text profile__btn-text--one">Профиль</span>
                 </a>
@@ -81,8 +83,8 @@
         </div>
     </header>
 
-@section('page-body')
-{{--    @if (Auth::user()->isAdmin())   --}}
+
+    @if (Auth::user()->isAdmin())
         <div class="page-content">
         <section class="currencies admin-trans">
             <div class="currencies__wrapper">
@@ -152,30 +154,38 @@
                 <div class="list-wrapper">
                     <div class="list list__titles">
                         <div class="list__item list__item1 list__title">
-                            ID
+                            <span>ID</span>
                         </div>
                         <div class="list__item list__item2 list__title">
-                            Дата
+                            <span>Дата</span>
                         </div>
                         <div class="list__item list__item4 list__title">
-                            Аккаунт
+                            <span> Аккаунт</span>
                         </div>
                         <div class="list__item list__item2 list__title">
-                            Валюта
+                            <span>Валюта</span>
                         </div>
                         <div class="list__item list__item7 list__title">
-                            Сумма
+                            <span> Сумма</span>
                         </div>
                         <div class="list__item list__item3 list__title">
-                            Реквизиты
+                            <span>Реквизиты</span>
                         </div>
                         <div class="list__item list__item5 list__title">
-                            Подтвердить вывод
+                            <span>Подтвердить вывод</span>
                         </div>
                         <div class="list__item list__item6 list__title">
-                            Статус
+                            <span>Статус</span>
                         </div>
                     </div>
+                    <style>
+                        .list__item3{
+                            min-width: 260px;
+                        }
+                        .list__item5{
+                            min-width: 110px;
+                        }
+                    </style>
                     @foreach($conslusions as $item)
                     <div class="list">
                         <div class="list__item list__item1">
@@ -234,44 +244,29 @@
 
                          </div>
                      </div>
+        </section>
                  </div>
              </div>
-         </section>
 
              <div class="pagination"> {{ $conslusions->links('vendor.pagination.custom') }}</div>
      </div>
- {{--    @endif--}}
-@endsection
-<nav class="nav">
-    <ul class="nav__list">
-        @if(auth()->user()->isUser())
-            @include('profile.__parts.leftNavigationProfile')
-        @endif
+
+@endif
+
+<nav class="adm">
+    <ul class="adm__list">
 
 
         @if(auth()->user()->isAdmin())
             @include('profile.__parts.leftNavigation')
         @endif
-
-        {{--            @if (Route::is('profile_me'))--}}
-        {{--                @include('profile.__parts.leftNavigationProfile')--}}
-
-        {{--            @else--}}
-        {{--                @include('profile.__parts.leftNavigation')--}}
-        {{--            @endif--}}
     </ul>
 </nav>
 
 
-<div class="page-body">
 
-    @yield('page-body')
 
 </div>
-</div>
-<script src="{{ asset('js/vendor.js') }}"></script>
-<script src="{{ asset('js/main.js') }}"></script>
-
 <script>
     function returnSuccess(conculation_id){
         $.ajax({

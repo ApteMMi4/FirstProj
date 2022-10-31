@@ -36,15 +36,15 @@ class HomeController extends Controller
             if(!array_key_exists('auth_passed',$google2fa)){
 
 
-                return redirect()->route('profile_index',['twofagoogleset'=>1]);
+                return redirect()->route('profile_dashboard',['twofagoogleset'=>1]);
 
             }
-            return redirect()->route('profile_index');
+            return redirect()->route('profile_dashboard');
 
 
         }else{
 
-            return redirect()->route('profile_me');
+            return redirect()->route('profile_dashboard');
         }
 
 

@@ -56,7 +56,7 @@
                 </div>
             </button>
             <div class="profile__content">
-                <a href="{{ route('profile_me') }}" class="profile__btn profile-hover">
+                <a href="{{ route('profile_adminMe') }}" class="profile__btn profile-hover">
                     <img class="profile__icon3" loading="lazy" src="{{ asset('img/profile.png') }}" alt="">
                     <span class="profile__btn-text profile__btn-text--one">Профиль</span>
                 </a>
@@ -77,95 +77,95 @@
             </div>
         </div>
     </header>
-@section('page-body')
-    @if (Auth::user()->role == 'admin')
+    @section('page-body')
+        @if (Auth::user()->role == 'admin')
 
-    <div class="page-content">
-        <section class="currencies user-page-v2">
-            <div class="currencies__wrapper">
-                <div class="currencies__top">
-                    <h2 class="user-page__title title fz18">
-                        Пользователи
+            <div class="page-content">
+                <section class="currencies user-page-v2">
+                    <div class="currencies__wrapper">
+                        <div class="currencies__top">
+                            <h2 class="user-page__title title fz18">
+                                Пользователи
 
-                        @if ($message = Session::get('success'))
-                            <div class="alert alert-success">
-                                <p>{{ $message }}</p>
+                                @if ($message = Session::get('success'))
+                                    <div class="alert alert-success">
+                                        <p>{{ $message }}</p>
+                                    </div>
+                                @endif
+
+                                @if ($errors->any())
+                                    <div class="alert alert-danger">
+                                        <ul>
+                                            @foreach ($errors->all() as $error)
+                                                <li>{{ $error }}</li>
+                                            @endforeach
+                                        </ul>
+                                    </div>
+                                @endif
+
+                            </h2>
+                            <div class="select-defolt">
+                                <select>
+                                    <option value="">
+                                        E-mail
+                                    </option>
+                                    <option value="">
+                                        Аккаунт
+                                    </option>
+                                </select>
                             </div>
-                        @endif
-
-                        @if ($errors->any())
-                            <div class="alert alert-danger">
-                                <ul>
-                                    @foreach ($errors->all() as $error)
-                                        <li>{{ $error }}</li>
-                                    @endforeach
-                                </ul>
+                            <form class="search-block">
+                                <input type="text" placeholder="Значения">
+                                <button class="search-block__btn gradi-btn">Найти</button>
+                            </form>
+                            <button class="create-account gradi-btn btn-hover2">
+                                <img loading="lazy" src="{{ asset('img/create-account.png') }}" alt="img">
+                                Создать акаунт
+                            </button>
+                        </div>
+                        <div class="admin-table user__table">
+                            <div class="admin-table__row row-title">
+                                <div class="admin-table__first">
+                                    ID
+                                </div>
+                                <div class="admin-table__two">
+                                    Имя
+                                </div>
+                                <div class="admin-table__two">
+                                    Email
+                                </div>
+                                <div class="admin-table__three">
+                                    Баланс
+                                </div>
+                                <div class="admin-table__four">
+                                    Статистика
+                                </div>
+                                <div class="admin-table__five">
+                                    Изменения
+                                </div>
                             </div>
-                        @endif
+                            @include('users.__parts.list')
 
-                    </h2>
-                    <div class="select-defolt">
-                        <select>
-                            <option value="">
-                                E-mail
-                            </option>
-                            <option value="">
-                                Аккаунт
-                            </option>
-                        </select>
-                    </div>
-                    <form class="search-block">
-                        <input type="text" placeholder="Значения">
-                        <button class="search-block__btn gradi-btn">Найти</button>
-                    </form>
-                    <button class="create-account gradi-btn btn-hover2">
-                        <img loading="lazy" src="{{ asset('img/create-account.png') }}" alt="img">
-                        Создать акаунт
-                    </button>
-                </div>
-                <div class="admin-table user__table">
-                    <div class="admin-table__row row-title">
-                        <div class="admin-table__first">
-                            ID
-                        </div>
-                        <div class="admin-table__two">
-                            Имя
-                        </div>
-                        <div class="admin-table__two">
-                            Email
-                        </div>
-                        <div class="admin-table__three">
-                            Баланс
-                        </div>
-                        <div class="admin-table__four">
-                            Статистика
-                        </div>
-                        <div class="admin-table__five">
-                            Изменения
+
+
+
                         </div>
                     </div>
-                    @include('users.__parts.list')
+                    @include('users.__parts.add')
+
+                </section>
+
+                {{ $users->links('vendor.pagination.custom') }}
 
 
-
-
-                </div>
             </div>
-            @include('users.__parts.add')
+        @elseif(Auth::user()->role == 'user')
 
-        </section>
+            <echo>Вы не являетесь администратором для просмотра этой страницы!!!</echo>
 
-        {{ $users->links('vendor.pagination.custom') }}
+        @endif
 
-
-    </div>
-    @elseif(Auth::user()->role == 'user')
-
-        <echo>Вы не являетесь администратором для просмотра этой страницы!!!</echo>
-
-    @endif
-
-@endsection
+    @endsection
 
     <nav class="nav">
         <ul class="nav__list">

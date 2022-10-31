@@ -51,8 +51,6 @@
             <a href="javascript:clickQrCode(this)" rel="0" class="token__btn gradi-btn btn-hover2">QR-код</a>
           </div>
 
-
-
         <div class="token__wrapper">
             @if(!$user->twofagoogle)
 
@@ -61,8 +59,7 @@
                 </div>
             @endif
         </div>
-    </div>
-    <div class="pc-profile__group">
+      <div class="pc-profile__group">
         @if(!$user->twofagoogle)
             <p>Пароль 2FA</p>
             <input class="payment__input pc-profile__input"  name="google2fa_pass" placeholder="Пароль 2FA" type="password">
@@ -71,6 +68,26 @@
 
     </div>
     <button type="submit" class="pc-profile__btn gradi-btn btn-hover2">@if($user->twofagoogle) Выключить @else Включить @endif</button>
+
+
+{{--<section class="pc-profile verify">--}}
+{{--    <div class="pc-profile__wrapper">--}}
+{{--        <h2 class="pc-profile__title title fz18">Статус профиля</h2>--}}
+{{--    </div>--}}
+{{--    <div class="pc-profile__form">--}}
+{{--        <div class="flex">--}}
+{{--            <img src="{{ asset('img/voskl.svg')}}" alt="img">--}}
+{{--            Верифицируйте свой профиль--}}
+{{--        </div>--}}
+{{--        <button class="pc-profile__btn gradi-btn btn-hover2">Начать</button>--}}
+
+{{--    </div>--}}
+{{--</section>--}}
+
+
+
+    </div>
+
 </form>
 
 <script>

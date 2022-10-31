@@ -23,8 +23,11 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/vendor.css') }}" rel="stylesheet">
     <link href="{{ asset('css/main.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href=" {{asset('frontend/custom/custom.css')}}?ver={{Str::random(16)}}">
     <link rel="stylesheet" href="{{ asset('custom/custom.css') }}">
     <link rel="stylesheet" href="{{ asset('custom/animate.min.css') }}">
+
+
 
 </head>
 <body>
@@ -35,20 +38,20 @@
     <header class="header">
         <div class="container">
             <div class="header__inner">
-                <a href="{{ route('index') }}" class="header__logo">
-                    <img class="header__icon" src="img/logo.png" alt="">
-                    apipay.is
+                <a class="header__logo" href="{{ route('index') }}">
+                    <img class="header__icon" src="{{asset('img/logo.png')}}" alt="">
+                    24Pay.Io
                 </a>
                 <nav class="header__nav">
                     <ul class="header__nav-list">
                         <li class="header__nav-item">
-                            <a class="header__nav-link" href="{{ route('yourself') }}">О нас </a>
+                            <a class="header__nav-link" href="{{route('footerMenu_aboutUs')}}">О нас </a>
                         </li>
                         <li class="header__nav-item">
-                            <a class="header__nav-link" href="{{ route('apiDocument') }}">API документация</a>
+                            <a class="header__nav-link" href="{{route('footerMenu_newses')}}">Новости</a>
                         </li>
                         <li class="header__nav-item">
-                            <a class="header__nav-link" href="{{ route('contact') }}">Контакты</a>
+                            <a class="header__nav-link" href="{{route('footerMenu_contacts')}}">Контакты</a>
                         </li>
                     </ul>
                     @guest
@@ -72,32 +75,6 @@
 
     </header>
 
-{{--    <div class="navigation">--}}
-{{--        <a class="navigation__link" href="admin-currencies.html">Админка валюты</a>--}}
-{{--        <a class="navigation__link" href="admin-direction.html">Направление обмена</a>--}}
-{{--        <a class="navigation__link" href="admin-transactions.html">Админка транзакции</a>--}}
-{{--        <a class="navigation__link" href="admin-users.html">Админка обмен валю пользователи</a>--}}
-{{--        <a class="navigation__link" href="admin.html">Админка</a>--}}
-{{--        <a class="navigation__link" href="arbitrary-payment-link.html">Лк произвольный платеж ссылка</a>--}}
-{{--        <a class="navigation__link" href="arbitrary-payment.html">Лк произвольный платеж</a>--}}
-{{--        <a class="navigation__link" href="conclusions.html">Админка вывод</a>--}}
-{{--        <a class="navigation__link" href="discount.html">Лк скидка</a>--}}
-{{--        <a class="navigation__link" href="exchange-requests.html">Админка обмен валю заявки</a>--}}
-{{--        <a class="navigation__link" href="index.html">главная</a>--}}
-{{--        <a class="navigation__link" href="main-arbitrary-payment.html">главная Произвольный платеж</a>--}}
-{{--        <a class="navigation__link" href="main-arbitrary-payment2.html">главная Произвольный платеж2</a>--}}
-{{--        <a class="navigation__link" href="main-exchange.html">Главная обмен 2</a>--}}
-{{--        <a class="navigation__link" href="main-exchange2.html">Главная обмен 3</a>--}}
-{{--        <a class="navigation__link" href="output-create.html">Лк вывод</a>--}}
-{{--        <a class="navigation__link" href="output.html">Лк вывод история</a>--}}
-{{--        <a class="navigation__link" href="payment.html">Лк вывод масов</a>--}}
-{{--        <a class="navigation__link" href="pc-profile.html">Лк профиль</a>--}}
-{{--        <a class="navigation__link" href="pc-transactions.html">Лк транзакции</a>--}}
-{{--        <a class="navigation__link" href="personal-area.html">Лк</a>--}}
-{{--        <a class="navigation__link" href="ref-prog-settings.html">Админка валюты партнерка</a>--}}
-{{--        <a class="navigation__link" href="sample.html">Лк вывод шаблоны</a>--}}
-{{--        <a class="navigation__link" href="user-page.html">Админка пользователи</a>--}}
-{{--    </div>--}}
 
     @yield('exchange')
     @yield('benefits')
@@ -121,22 +98,133 @@
     @include('auth._forms.login')
 
 
-    <footer class="footer">
-        <div class="container">
-            <div class="footer__inner">
-                <a class="header__logo">
-                    <img class="header__icon" src="img/logo.png" alt="">
-                    apipay.is
-                </a>
-                <p class="header__copy">© 2022 APIPAY.IS</p>
-            </div>
-        </div>
-    </footer>
+
+
+    <div class="footer__menu-wrapper">
+        <nav class="footer__menu-outer">
+            <h4 class="footer__menu-title">
+                Продукты
+            </h4>
+            <ul class="footer__menu">
+                <li class="footer__menu-item no-social">
+                    <a href="{{route('footerMenu_payKode24')}}" class="footer__menu-link">
+                        24Pay-Code
+                    </a>
+                </li>
+                <li class="footer__menu-item no-social">
+                    <a href="doc" class="footer__menu-link">
+                        API
+                    </a>
+                </li>
+                <li class="footer__menu-item no-social">
+                    <a href="{{route('footerMenu_fees')}}" class="footer__menu-link">
+                        Комиссии
+                    </a>
+                </li>
+                <li class="footer__menu-item no-social">
+                    <a href="{{route('footerMenu_invoices')}}" class="footer__menu-link">
+                        Invoice
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        <nav class="footer__menu-outer">
+            <h4 class="footer__menu-title">
+                Информация
+            </h4>
+            <ul class="footer__menu">
+                <li class="footer__menu-item no-social">
+                    <a href="{{route('footerMenu_fAQ')}}" class="footer__menu-link">
+                        FAQ
+                    </a>
+                </li>
+                <li class="footer__menu-item no-social">
+                    <a href="{{route('footerMenu_blog')}}" class="footer__menu-link">
+                        Блог
+                    </a>
+                </li>
+                <li class="footer__menu-item no-social">
+                    <a href="{{route('footerMenu_partners')}}" class="footer__menu-link">
+                        Партнерам
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        <nav class="footer__menu-outer">
+            <h4 class="footer__menu-title">
+                Документация
+            </h4>
+            <ul class="footer__menu">
+                <li class="footer__menu-item no-social">
+                    <a href="{{route('footerMenu_agreement')}}" class="footer__menu-link">
+                        Пользовательское соглашение
+                    </a>
+                </li>
+                <li class="footer__menu-item no-social">
+                    <a href="{{route('footerMenu_privacyPolicy')}}" class="footer__menu-link">
+                        Политика конфиденциальности
+                    </a>
+                </li>
+                <li class="footer__menu-item no-social">
+                    <a href="{{route('footerMenu_amlKYCPolicy')}}" class="footer__menu-link">
+                        Политика AML/KYC
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        <nav class="footer__menu-outer">
+            <h4 class="footer__menu-title">
+                Контакты
+            </h4>
+            <ul class="footer__menu">
+                <li class="footer__menu-item">
+                    <a href="#" class="footer__menu-link">
+                        <div class="footer__menu-img-outer">
+                            <img src="img/mail.svg" alt="img">
+                        </div>
+                        support@mail.com
+                    </a>
+                </li>
+                <li class="footer__menu-item">
+                    <a href="#" class="footer__menu-link">
+                        <div class="footer__menu-img-outer">
+                            <img src="img/facebook.svg" alt="img">
+                        </div>
+                        Facebook
+                    </a>
+                </li>
+                <li class="footer__menu-item">
+                    <a href="#" class="footer__menu-link">
+                        <div class="footer__menu-img-outer">
+                            <img src="img/insta.svg" alt="img">
+                        </div>
+                        Instagram
+                    </a>
+                </li>
+                <li class="footer__menu-item">
+                    <a href="#" class="footer__menu-link">
+                        <div class="footer__menu-img-outer">
+                            <img src="img/telegram.svg" alt="img">
+                        </div>
+                        Telegram
+                    </a>
+
+                </li>
+            </ul>
+        </nav>
+    </div>
+</div>
+</div>
+<p class="header__copy">© 2021 - 2022 24Pay.Io</p>
+</footer>
+
+    @include('frontend/partials/footer')
 </div>
 @inject('carbon', 'Carbon\Carbon')
 
-<script src="{{ asset('js/vendor.js') }}"></script>
-<script src="{{ asset('js/main.js') }}"></script>
+    <script src="{{ asset('js/vendor.js') }}"></script>
+    <script src="{{ asset('js/main.js') }}"></script>
+
 
 <script>
     function selectUsePay(obj){
@@ -185,5 +273,7 @@
     }
 
 </script>
+
 </body>
 </html>
+

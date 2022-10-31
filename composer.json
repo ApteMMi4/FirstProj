@@ -19,7 +19,7 @@
         "pragmarx/google2fa-laravel": "^2.0"
     },
     "require-dev": {
-        "facade/ignition": "^2.5",
+        "barryvdh/laravel-debugbar": "^3.6",
         "fakerphp/faker": "^1.9.1",
         "jason-guru/laravel-make-repository": "^0.0.3",
         "laravel/sail": "^1.0.1",
@@ -33,7 +33,11 @@
             "Database\\Factories\\": "database/factories/",
             "Database\\Seeders\\": "database/seeders/",
             "Payments\\": "payments/src/"
-        }
+        },
+        "files": [
+          "app/Helpers/NumberHelper.php",
+          "app/Helpers/EmailHelper.php"
+        ]
     },
     "autoload-dev": {
         "psr-4": {

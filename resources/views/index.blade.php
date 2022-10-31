@@ -1,39 +1,32 @@
-<!DOCTYPE html>
-<html lang="ru">
+@include('frontend/partials/head')
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <meta name="theme-color" content="#111111">
-    <title>Мультивалютная обменная платформа фиата в криптовалюты.</title>
-    <link rel="stylesheet" href="css/vendor.css">
-    <link rel="stylesheet" href="css/main.css">
-</head>
-
-<body>
     <div class="page">
         <header class="header">
             <div class="container">
                 <div class="header__inner">
-                    <a class="header__logo">
+                    <a class="header__logo" href="{{ route('index') }}">
                         <img class="header__icon" src="img/logo.png" alt="">
                         24Pay.Io
                     </a>
                     <nav class="header__nav">
                         <ul class="header__nav-list">
                             <li class="header__nav-item">
-                                <a class="header__nav-link" href="about">О нас </a>
+                                <a class="header__nav-link" href="{{route('footerMenu_aboutUs')}}">О нас </a>
                             </li>
                             <li class="header__nav-item">
-                                <a class="header__nav-link" href="news">Новости</a>
+                                <a class="header__nav-link" href="{{route('footerMenu_newses')}}">Новости</a>
                             </li>
                             <li class="header__nav-item">
-                                <a class="header__nav-link" href="contact">Контакты</a>
+                                <a class="header__nav-link" href="{{route('footerMenu_contacts')}}">Контакты</a>
                             </li>
                         </ul>
+                        @if(!auth()->user())
                         <button class="main__btn main__btn--header">Авторизация</button>
+                        @elseif(auth()->user()->isUser())
+                        <button class="main__btn  popup__btn">
+                            <a class="header__nav-link" href="{{ route('login') }}">Кабинет</a>
+                        </button>
+                        @endif
                     </nav>
                     <div class="burger burger--main">
                         <span></span>
@@ -500,38 +493,8 @@
             </div>
         </section>
 
-        <div class="popup popup--registration">
-            <form class="popup__inner" action="/">
-                <span class="popup__close popup__close--registration"></span>
-                <h2 class="popup__title title-main fz27">Регистрация</h2>
-                <input class="popup__input payment__input" name="login" placeholder="Логин" type="text">
-                <input class="popup__input payment__input" name="password" placeholder="Пароль" type="password">
-                <input class="popup__input payment__input" name="email" placeholder="E-mail" type="text">
-                <input class="popup__input payment__input" name="tel" placeholder="Номер телефона" type="tel">
-                <button class="main__btn main__btn--logo popup__btn">подключится</button>
-            </form>
-        </div>
-
-        <div class="popup popup--authorization">
-            <form class="popup__inner" action="/">
-                <span class="popup__close popup__close--authorization"></span>
-                <h2 class="popup__title title-main fz27">Авторизация</h2>
-                <div class="popup__wrapper">
-                    <img class="popup__img" src="img/profile.png" alt="img">
-                    <input class="popup__input popup__input--password payment__input" name="login" type="text">
-                </div>
-                <div class="popup__wrapper">
-                    <img class="popup__img" src="img/key.png" alt="img">
-                    <input class="popup__input popup__input--password payment__input" name="password" type="password">
-                </div>
-                <div class="popup__box">
-                    <span class="popup__link-password">Забыли пароль?</span>
-                    <span class="popup__link-registration">Регистрация</span>
-                </div>
-
-                <button class="main__btn main__btn--header popup__btn">подключится</button>
-            </form>
-        </div>
+        @include('frontend.templates.auth.registration_popup')
+        @include('frontend.templates.auth.login_popup')
 
         <div class="popup popup--password">
             <form class="popup__inner" action="/">
@@ -565,7 +528,7 @@
                             </h4>
                             <ul class="footer__menu">
                                 <li class="footer__menu-item no-social">
-                                    <a href="24pay-kode" class="footer__menu-link">
+                                    <a href="{{route('footerMenu_payKode24')}}" class="footer__menu-link">
                                         24Pay-Code
                                     </a>
                                 </li>
@@ -575,12 +538,12 @@
                                     </a>
                                 </li>
                                 <li class="footer__menu-item no-social">
-                                    <a href="fees" class="footer__menu-link">
+                                    <a href="{{route('footerMenu_fees')}}" class="footer__menu-link">
                                         Комиссии
                                     </a>
                                 </li>
                                 <li class="footer__menu-item no-social">
-                                    <a href="invoice" class="footer__menu-link">
+                                    <a href="{{route('footerMenu_invoices')}}" class="footer__menu-link">
                                         Invoice
                                     </a>
                                 </li>
@@ -592,17 +555,17 @@
                             </h4>
                             <ul class="footer__menu">
                                 <li class="footer__menu-item no-social">
-                                    <a href="faq" class="footer__menu-link">
+                                    <a href="{{route('footerMenu_fAQ')}}" class="footer__menu-link">
                                         FAQ
                                     </a>
                                 </li>
                                 <li class="footer__menu-item no-social">
-                                    <a href="blog" class="footer__menu-link">
+                                    <a href="{{route('footerMenu_blog')}}" class="footer__menu-link">
                                         Блог
                                     </a>
                                 </li>
                                 <li class="footer__menu-item no-social">
-                                    <a href="partners" class="footer__menu-link">
+                                    <a href="{{route('footerMenu_partners')}}" class="footer__menu-link">
                                         Партнерам
                                     </a>
                                 </li>
@@ -614,17 +577,17 @@
                             </h4>
                             <ul class="footer__menu">
                                 <li class="footer__menu-item no-social">
-                                    <a href="agreement" class="footer__menu-link">
+                                    <a href="{{route('footerMenu_agreement')}}" class="footer__menu-link">
                                         Пользовательское соглашение
                                     </a>
                                 </li>
                                 <li class="footer__menu-item no-social">
-                                    <a href="privacy-policy" class="footer__menu-link">
+                                    <a href="{{route('footerMenu_privacyPolicy')}}" class="footer__menu-link">
                                         Политика конфиденциальности
                                     </a>
                                 </li>
                                 <li class="footer__menu-item no-social">
-                                    <a href="aml-kyc" class="footer__menu-link">
+                                    <a href="{{route('footerMenu_amlKYCPolicy')}}" class="footer__menu-link">
                                         Политика AML/KYC
                                     </a>
                                 </li>
@@ -676,9 +639,4 @@
             <p class="header__copy">© 2021 - 2022 24Pay.Io</p>
         </footer>
 
-    </div>
-    <script src="js/vendor.js"></script>
-    <script src="js/main.js"></script>
-</body>
-
-</html>
+@include('frontend/partials/footer')

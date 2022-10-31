@@ -26,6 +26,9 @@ class User extends Authenticatable
     protected $fillable = [
         'name',
         'email',
+        'email_verify_code',
+        'email_verified_at',
+        'phone',
         'status',
         'password',
         'google2fa_secret',
@@ -78,6 +81,11 @@ class User extends Authenticatable
         return ($value)?decrypt($value):'';
     }
 
+    public function paycodes()
+    {
+        return $this->hasMany(Paycode::class, 'user_id_from');
+    }
+
     public function news()
     {
         return $this->hasMany(User::class, 'user_id');
@@ -101,7 +109,7 @@ class User extends Authenticatable
         {
             return redirect('/dashboard'); // у меня редирект в админку
         } else {
-            return redirect('/login'); // страница логина
+//            return redirect('/login'); // страница логина
         }
     }
 //    public function isAdmin()

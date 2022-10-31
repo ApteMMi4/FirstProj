@@ -9,8 +9,9 @@ use App\Models\PaymentForm;
 use App\Models\PaymentList;
 use App\Models\Transactions;
 use App\Models\User;
+use Database\Seeders\UsersSeeder;
 use Illuminate\Http\Request;
-use Auth;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
 use function React\Promise\all;
@@ -48,7 +49,14 @@ class UserController extends CabinetController
         $staticSum = Transactions::where('status','success')->where('currency', 'UAH')->sum('amount');
         $allSum = Transactions::where('status','success')->where('currency', 'UAH')->sum('total');
 
-        return view('profile.index', compact('staticSum', 'allSum'));
+        $transactions = Transactions::where('shop_id', auth()->user()->id)->where('status', '=', 'success')->orderBy('id', 'desc')->get();
+
+        if (auth()->user()->isUser())
+            return view('profile.dashboard', compact('staticSum', 'allSum'), ['trans'=>$transactions->groupBy('currency')]);
+
+        if(auth()->user()->isAdmin())
+        return view('profile.index', compact('staticSum', 'allSum'), ['trans'=>$transactions->groupBy('currency')]);
+
     }
 
     /**
@@ -64,27 +72,27 @@ class UserController extends CabinetController
         $user = Auth::user();
 
 
-        $registration_data = [
-            'email'=>$user->email,
-        ];
-        $google2fa = app('pragmarx.google2fa');
-
-
-
-        if(!$user->twofagoogle){
-            $registration_data["google2fa_secret"] = $google2fa->generateSecretKey();
-            $QR_Image = $google2fa->getQRCodeInline(
-                config('app.name'),
-                $registration_data['email'],
-                $registration_data['google2fa_secret']
-            );
-
-            $request->session()->flash('registration_data', $registration_data);
-
-        }else{
-            $QR_Image = '';
-            $registration_data["google2fa_secret"] = $user->google2fa_secret;
-        }
+//        $registration_data = [
+//            'email'=>$user->email,
+//        ];
+//        $google2fa = app('pragmarx.google2fa');
+//
+//
+//
+//        if(!$user->twofagoogle){
+//            $registration_data["google2fa_secret"] = $google2fa->generateSecretKey();
+//            $QR_Image = $google2fa->getQRCodeInline(
+//                config('app.name'),
+//                $registration_data['email'],
+//                $registration_data['google2fa_secret']
+//            );
+//
+//            $request->session()->flash('registration_data', $registration_data);
+//
+//        }else{
+//            $QR_Image = '';
+//            $registration_data["google2fa_secret"] = $user->google2fa_secret;
+//        }
 
         $transactions = Transactions::where('shop_id', auth()->user()->id)->where('status', '=', 'success')->orderBy('id', 'desc')->get();
 
@@ -92,10 +100,10 @@ class UserController extends CabinetController
 
         return view('profile.me',[
             'user'=>$user,
-            'QR_Image' => $QR_Image,
+//            'QR_Image' => $QR_Image,
             'trans'=>$transactions->groupBy('currency'),
-            'secret' => $registration_data['google2fa_secret'
-           ]
+//            'secret' => $registration_data['google2fa_secret'
+//           ]
         ]);
     }
 
@@ -152,9 +160,11 @@ class UserController extends CabinetController
 
 
 
+        if (Auth::user()->role == 'user')
+        return redirect()->route('profile_pcProtect')->with('error','Двух-факторная авторизация включена');
 
-
-        return redirect()->route('profile_me')->with('error','Двух-факторная авторизация включена');
+        if (Auth::user()->role == 'admin')
+            return redirect()->route('profile_adminMe')->with('error','Двух-факторная авторизация включена');
     }
 
 
@@ -207,12 +217,12 @@ class UserController extends CabinetController
         return view('profile.currencies');
     }
 
-    public function conclusionsUser()
+    public function withdrawalHistory()
     {
-            $conslusions = Conclusions::where('user_id',auth()->id())->orderBy('id', 'desc')->paginate(15);
+        $conslusions = Conclusions::where('user_id',auth()->id())->orderBy('id', 'desc')->paginate(15);
 
 
-        return view ('profile.conclusionsUser',compact('conslusions'));
+        return view ('profile.withdrawalHistory',compact('conslusions'));
     }
     public function userPage()
     {
@@ -234,7 +244,7 @@ class UserController extends CabinetController
     {
         return view('profile.fastOutput');
     }
-    public function arbitraryPayment()
+    public function invoice()
     {
         $currency = 'UAH';
         $listPay = PaymentList::where('currency', $currency)->pluck('name', 'id');
@@ -244,7 +254,7 @@ class UserController extends CabinetController
         $paymList = PaymentForm::where('user_id', auth()->id())->orderBy('id', 'desc')->get();
 
 
-        return view('profile.arbitrary-payment', compact('listPay','paymList'));
+        return view('profile.invoice', compact('listPay','paymList'));
     }
 
     public function arbitraryPaymentSave(TransactionUrlRequest $request)
@@ -252,7 +262,7 @@ class UserController extends CabinetController
         $transaction = Transactions::create([
             'amount'=>$request->get('payment'),
             'status'=>'process',
-            'currency'=>'UAH',
+            'currency'=> 5,
             'shop_id'=>auth()->user()->id,
             'total'=>0,
         ]);
@@ -278,15 +288,15 @@ class UserController extends CabinetController
         $transaction->url_id = $payForm->id;
         $transaction->save();
 
-        return redirect(route('profile_arbitraryPayment'));
+        return redirect(route('profile_arbitraryPaymentSave'));
     }
-    public function statUser()
+    public function dashboard()
     {
         $transactions = Transactions::where('shop_id', auth()->user()->id)->where('status', '=', 'success')->orderBy('id', 'desc')->get();
 
-        return view('profile.statUser', ['trans'=>$transactions->groupBy('currency')]);
+        return view('profile.dashboard', ['trans'=>$transactions->groupBy('currency')]);
     }
-    public function userTransaction(Request $request)
+    public function history(Request $request)
     {
         $build = Transactions::where('shop_id', auth()->id());
 
@@ -310,18 +320,23 @@ class UserController extends CabinetController
         {
             $transactions = $build->paginate(10);
         }
-        return view('profile.userTransact', ['trans'=>$transactions]);
+
+        return view('profile.history', ['trans'=>$transactions]);
     }
-    public function conclusionsCreate()
+    public function withdrawal(Request $request)
     {
-        return view('profile.conclusionsCreate');
+        $transactions = Transactions::where('shop_id', auth()->user()->id)->where('status', '=', 'success')->orderBy('id', 'desc')->get();
+
+        return view('profile.withdrawal', ['trans'=>$transactions->groupBy('currency')]);
     }
 
-    public function conclusionsStore(Request $request)
+    public function conclusionsStore(TransactionUrlRequest $request)
     {
+
         $vivod = $request->all();
         $vivod ['user_id']= auth()->id();
         $transTotal = Transactions::where('shop_id',auth()->id())->sum('total');
+
 
         if($transTotal < $vivod ['sum']){
             return back()->with('success', 'Не достаточно денег на счету!');
@@ -347,13 +362,128 @@ class UserController extends CabinetController
     {
         return view('profile.conclusionsPays');
 }
+    public function payCode()
+    {
+        return view('profile.payCode');
+    }
+    public function exchange()
+    {
+        $transactions = Transactions::where('shop_id', auth()->user()->id)->where('status', '=', 'success')->orderBy('id', 'desc')->get();
+
+        return view('profile.exchange', ['trans'=>$transactions->groupBy('currency')]);
+    }
+    public function transfers()
+    {
+        $transactions = Transactions::where('shop_id', auth()->user()->id)->where('status', '=', 'success')->orderBy('id', 'desc')->get();
+
+        return view('profile.transfers', ['trans'=>$transactions->groupBy('currency')]);
+    }
+    public function verify()
+    {
+        return view('profile.verify');
+    }
+    public function news()
+    {
+        return view('profile.news');
+    }
     public function sample()
     {
         return view('profile.sample');
     }
+
+    public function pcTransactions()
+    {
+        return view('profile.pcTransactions');
+    }
+
     public function discUser()
     {
         return view('profile.discUser');
+    }
+    public function pcAlert()
+    {
+        return view('profile.pcAlert');
+    }
+    public function pcProtect(Request $request)
+    {
+
+        $user = Auth::user();
+
+        $registration_data = [
+            'email'=>$user->email,
+        ];
+        $google2fa = app('pragmarx.google2fa');
+
+
+
+        if(!$user->twofagoogle){
+            $registration_data["google2fa_secret"] = $google2fa->generateSecretKey();
+            $QR_Image = $google2fa->getQRCodeInline(
+                config('app.name'),
+                $registration_data['email'],
+                $registration_data['google2fa_secret']
+            );
+
+            $request->session()->flash('registration_data', $registration_data);
+
+        }else{
+            $QR_Image = '';
+            $registration_data["google2fa_secret"] = $user->google2fa_secret;
+        }
+        return view('profile.pcProtect',[
+            'user'=>$user,
+            'QR_Image' => $QR_Image,
+            'secret' => $registration_data['google2fa_secret'
+            ]
+        ]);
+    }
+    public function pcApi()
+    {
+        return view('profile.pcApi');
+    }
+    public function changePass()
+    {
+        return view('profile.changePass');
+    }
+
+    public function adminMe(Request $request)
+    {
+        $user = Auth::user();
+
+
+        $registration_data = [
+            'email'=>$user->email,
+        ];
+        $google2fa = app('pragmarx.google2fa');
+
+
+
+        if(!$user->twofagoogle){
+            $registration_data["google2fa_secret"] = $google2fa->generateSecretKey();
+            $QR_Image = $google2fa->getQRCodeInline(
+                config('app.name'),
+                $registration_data['email'],
+                $registration_data['google2fa_secret']
+            );
+
+            $request->session()->flash('registration_data', $registration_data);
+
+        }else{
+            $QR_Image = '';
+            $registration_data["google2fa_secret"] = $user->google2fa_secret;
+        }
+
+        $transactions = Transactions::where('shop_id', auth()->user()->id)->where('status', '=', 'success')->orderBy('id', 'desc')->get();
+
+
+
+        return view('profile.adminMe',[
+            'user'=>$user,
+            'QR_Image' => $QR_Image,
+            'trans'=>$transactions->groupBy('currency'),
+            'secret' => $registration_data['google2fa_secret'
+            ]
+        ]);
     }
     public function statusTransactionUpdate(Request $request)
     {
@@ -371,6 +501,54 @@ class UserController extends CabinetController
         ];
         return ['status'=>$listStatus[$status]];
 
+    }
+
+    //Footer--Menu
+
+    public function payKode24()
+    {
+        return view('footerMenu.payKode24');
+    }
+
+    public function fees()
+    {
+        return view('footerMenu.fees');
+    }
+
+    public function invoices()
+    {
+        return view('footerMenu.invoices');
+    }
+
+
+    public function fAQ()
+    {
+        return view('footerMenu.fAQ');
+    }
+
+    public function blog()
+    {
+        return view('footerMenu.blog');
+    }
+
+    public function partners()
+    {
+        return view('footerMenu.partners');
+    }
+
+    public function agreement()
+    {
+        return view('footerMenu.agreement');
+    }
+
+    public function privacyPolicy()
+    {
+        return view('footerMenu.privacyPolicy');
+    }
+
+    public function amlKYCPolicy()
+    {
+        return view('footerMenu.amlKYCPolicy');
     }
 
 

@@ -1,6 +1,4 @@
-{{--@extends('layouts.profile')--}}
-
-    <!doctype html>
+<!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
     <meta charset="utf-8">
@@ -12,13 +10,17 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
+    <script src="{{asset('frontend/js/vendor.js')}}"></script>
+    <script src="{{asset('frontend/js/main.js')}}"></script>
+    <script src="{{asset('frontend/custom/custom.js')}}?ver=10"></script>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
     <!-- Styles -->
+
+
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/vendor.css') }}" rel="stylesheet">
     <link href="{{ asset('css/main.css') }}" rel="stylesheet">
@@ -57,7 +59,7 @@
                 </div>
             </button>
             <div class="profile__content">
-                <a href="{{ route('profile_me') }}" class="profile__btn profile-hover">
+                <a href="{{ route('profile_adminMe') }}" class="profile__btn profile-hover">
                     <img class="profile__icon3" loading="lazy" src="{{ asset('img/profile.png') }}" alt="">
                     <span class="profile__btn-text profile__btn-text--one">Профиль</span>
                 </a>
@@ -79,7 +81,7 @@
         </div>
     </header>
 
-    @section('page-body')
+
         @if (Auth::user()->role == 'admin')
             <div class="page-content">
                 <section class="currencies admin-trans pc-trans">
@@ -196,7 +198,7 @@
                                     {{$item->created_at}}
                                 </div>
                                 <div class="admin-table__four">
-                                    {{$item->user->name}}
+                                    {{$item->user->name ?? 'unknown'}}
                                 </div>
 {{--                                <div class="admin-table__three">--}}
 {{--                                    4441 1144 5375 6574--}}
@@ -262,7 +264,6 @@
                 <div class="pagination"> {{ $users->links('vendor.pagination.custom') }}</div>
             </div>
         @endif
-    @endsection
 
 
     <nav class="nav">
@@ -285,15 +286,7 @@
         </ul>
     </nav>
 
-
-    <div class="page-body">
-
-        @yield('page-body')
-
-    </div>
 </div>
-<script src="{{ asset('js/vendor.js') }}"></script>
-<script src="{{ asset('js/main.js') }}"></script>
 <script>
     function statusUpdate(transaction_id, status){
         $.ajax({
